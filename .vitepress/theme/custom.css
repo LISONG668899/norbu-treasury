@@ -1,0 +1,333 @@
+/* ============================================================
+   竹巴噶举妙法如意宝藏 · 全站样式
+   ------------------------------------------------------------
+   沿用竹巴噶举网站的规矩：
+   ★ 藏文字体只用自托管的 "Noto Serif Tibetan Web"（名字带 Web，不可删）
+   ★ 每个模块独立围栏前缀，互不污染：
+       .rz-header / .rz-crumb / .rz-footer   全站框架
+       .rz-home                               首页
+       .rz-cat                                目录页（第二、三层）
+       .rz-text                               经文正文页（最末一层）
+       .rz-media                              图片（R2）
+   ============================================================ */
+
+@font-face {
+  font-family: "Noto Serif Tibetan Web";
+  src: url("/fonts/NotoSerifTibetan-bo.woff2") format("woff2");
+  unicode-range: U+0F00-0FFF;
+  font-display: swap;
+}
+
+/* ---------- 色调：浅色（宣纸）/ 深色 ---------- */
+:root {
+  --rz-paper: #efebe3;
+  --rz-card: #fbfaf7;
+  --rz-card-border: #b9b2a6;
+  --rz-ink: #22201c;
+  --rz-ink-2: #5d574e;
+  --rz-ink-3: #8a8378;
+  --rz-seal: #a3561c;          /* 圆章棕 */
+  --rz-shadow: 0 6px 14px rgba(60, 45, 25, .10);
+  --vp-c-brand-1: #9a5b2e;
+  --vp-c-brand-2: #b06a43;
+  --vp-c-bg: var(--rz-paper);
+  --vp-nav-height: 0px;        /* 不用 VitePress 自带导航栏 */
+  --vp-font-family-base: "Noto Serif Tibetan Web", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", serif;
+}
+.dark {
+  --rz-paper: #1d1b18;
+  --rz-card: #282520;
+  --rz-card-border: #4a443b;
+  --rz-ink: #ece6da;
+  --rz-ink-2: #bdb4a5;
+  --rz-ink-3: #8f877a;
+  --rz-seal: #d49a5f;
+  --rz-shadow: 0 6px 14px rgba(0, 0, 0, .35);
+  --vp-c-bg: var(--rz-paper);
+}
+
+/* 宣纸纹理：纯 CSS 噪点，不额外下载图片 */
+body {
+  background-color: var(--rz-paper);
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .40 0 0 0 0 .32 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  color: var(--rz-ink);
+}
+.dark body { background-image: none; }
+.VPContent, .VPPage, .VPContent.is-home { background: transparent !important; }
+
+/* 隐藏 VitePress 自带导航栏（顶部栏改由 SiteHeader 绘制） */
+.VPNav, .VPLocalNav { display: none !important; }
+.VPContent { padding-top: 0 !important; }
+
+/* ---------- 顶部栏 ---------- */
+.rz-header {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 26px 20px 10px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.rz-logo img { display: block; height: 62px; width: auto; }
+.rz-logo { margin-right: auto; flex: none; }
+.rz-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 46px;
+  padding: 0 18px;
+  border: 1.5px solid var(--rz-card-border);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--rz-ink) !important;
+  font-size: 17px;
+  text-decoration: none !important;
+  box-shadow: var(--rz-shadow);
+  cursor: pointer;
+  transition: border-color .2s, color .2s;
+  white-space: nowrap;
+}
+.rz-btn:hover { border-color: var(--rz-seal); color: var(--rz-seal) !important; }
+.rz-btn .tib { font-family: "Noto Serif Tibetan Web", serif; font-size: 15px; }
+.rz-search { min-width: 260px; }
+.rz-tone .tib, .rz-about .tib { font-size: 15px; }
+/* 色调按钮图标：浅色时显示月亮（点了变深），深色时显示太阳 */
+.rz-tone .ic-sun { display: none; }
+.dark .rz-tone .ic-sun { display: block; }
+.dark .rz-tone .ic-moon { display: none; }
+
+.rz-crumb {
+  box-sizing: border-box;
+  width: 100%;
+  text-align: left;
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 4px 20px 0;
+}
+.rz-crumb a {
+  font-family: "Noto Serif Tibetan Web", serif;
+  font-size: 15px;
+  color: var(--rz-ink-2) !important;
+  text-decoration: none !important;
+}
+.rz-crumb a:hover { color: var(--rz-seal) !important; }
+
+/* ---------- 页脚 ---------- */
+.rz-footer {
+  margin-top: 56px;
+  padding: 24px 20px 44px;
+  text-align: center;
+}
+.rz-footer-icon { height: 58px; width: auto; display: inline-block; margin-bottom: 10px; }
+.rz-footer-text { font-size: 14px; color: var(--rz-ink-3); letter-spacing: 1px; }
+
+/* ---------- 首页 / 目录页共用标题 ---------- */
+.rz-home, .rz-cat {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 34px 20px 24px;
+}
+.rz-home .rz-h-tib, .rz-cat .rz-h-tib {
+  margin-bottom: 40px !important;
+  text-align: center;
+  font-family: "Noto Serif Tibetan Web", serif;
+  font-size: 30px;
+  line-height: 1.6;
+  font-weight: 400;
+  color: var(--rz-ink);
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+.rz-home .rz-h-zh, .rz-cat .rz-h-zh {
+  text-align: center;
+  font-size: 22px;
+  letter-spacing: 2px;
+  color: var(--rz-ink);
+  margin: 6px 0 40px;
+}
+.rz-cat .rz-h-tib { font-size: 26px; margin-bottom: 36px; }
+.rz-cat .rz-h-zh + * { margin-top: 0; }
+
+/* ---------- 目录：长条按钮 ---------- */
+.rz-catalog .rz-list {
+  max-width: 680px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.rz-catalog .rz-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  min-height: 84px;
+  padding: 16px 22px;
+  background: var(--rz-card);
+  border: 1.5px solid var(--rz-card-border);
+  border-radius: 18px;
+  color: var(--rz-ink) !important;
+  text-decoration: none !important;
+  transition: border-color .2s, transform .15s, box-shadow .2s;
+}
+.rz-catalog .rz-item:hover {
+  border-color: var(--rz-seal);
+  transform: translateY(-2px);
+  box-shadow: var(--rz-shadow);
+}
+.rz-catalog .rz-item-mark { color: var(--rz-ink-2); font-size: 18px; flex: none; }
+.rz-catalog .rz-item-title {
+  font-family: "Noto Serif Tibetan Web", serif;
+  font-size: 21px;
+  line-height: 1.6;
+  text-align: center;
+  overflow-wrap: anywhere;   /* 长藏文标题在手机上自动换行，不横向滚动 */
+}
+.rz-catalog .rz-item-sub { font-size: 14px; color: var(--rz-ink-3); }
+
+/* ---------- 目录：函号圆章 ---------- */
+.rz-catalog .rz-medals {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 56px;
+  column-gap: 20px;
+  max-width: 720px;
+  margin: 12px auto 0;
+  justify-items: center;
+}
+.rz-catalog .rz-medal { text-decoration: none !important; text-align: center; }
+.rz-catalog .rz-medal-ring {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 9px solid var(--rz-seal);
+  box-shadow: inset 0 0 0 4px var(--rz-paper), inset 0 0 0 6px var(--rz-seal);
+  transition: transform .2s;
+}
+.rz-catalog .rz-medal:hover .rz-medal-ring { transform: scale(1.05); }
+.rz-catalog .rz-medal-letter {
+  font-family: "Noto Serif Tibetan Web", serif;
+  font-size: 54px;
+  line-height: 1;
+  color: var(--rz-seal);
+  padding-bottom: 6px;
+}
+.rz-catalog .rz-medal-sub {
+  display: block;
+  margin-top: 10px;
+  font-family: "Noto Serif Tibetan Web", serif;
+  font-size: 15px;
+  color: var(--rz-ink-2);
+}
+.rz-catalog .rz-empty {
+  text-align: center;
+  font-family: "Noto Serif Tibetan Web", serif;
+  font-size: 18px;
+  color: var(--rz-ink-3);
+  margin: 40px 0;
+}
+
+/* ---------- 经文正文页 ---------- */
+.rz-text {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 30px 24px 24px;
+}
+.rz-text .rz-t-title {
+  text-align: center !important;
+  font-family: "Noto Serif Tibetan Web", serif;
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 1.7;
+  border: 0;
+  margin: 0 0 6px;
+  padding: 0;
+}
+.rz-text .rz-t-author {
+  text-align: center !important;
+  font-family: "Noto Serif Tibetan Web", serif;
+  font-size: 17px;
+  color: var(--rz-ink-2);
+  margin: 0 0 34px;
+}
+.rz-text .bo {
+  font-family: "Noto Serif Tibetan Web", serif;
+  font-size: 21px;
+  line-height: 2.05;
+  text-align: left;          /* 藏文不用两端对齐：会把垂符后的空格拉得很大 */
+  margin: 0 0 18px;
+  overflow-wrap: anywhere;
+}
+.rz-text .bo-verse {
+  font-family: "Noto Serif Tibetan Web", serif;
+  font-size: 21px;
+  line-height: 1.95;
+  text-align: center !important;
+  margin: 0;
+}
+.rz-text .bo-verse.last { margin-bottom: 18px; }
+.rz-text .rz-t-head {
+  text-align: center !important;
+  font-family: "Noto Serif Tibetan Web", serif;
+  font-size: 23px;
+  font-weight: 700;
+  margin: 30px 0 16px;
+}
+.rz-text .rz-pdf {
+  text-align: center;
+  margin-top: 36px;
+  font-size: 15px;
+}
+.rz-text .rz-pdf a { color: var(--rz-ink-2) !important; }
+
+/* ---------- 图片（R2）---------- */
+.rz-media { margin: 24px auto; text-align: center; }
+.rz-media img { max-width: 100%; height: auto; border-radius: 4px; box-shadow: var(--rz-shadow); }
+.rz-media figcaption {
+  margin-top: 10px;
+  font-family: "Noto Serif Tibetan Web", serif;
+  font-size: 16px;
+  color: var(--rz-ink-2);
+}
+.rz-media-dl { margin-left: 12px; font-size: 13px; }
+
+/* ---------- 搜索框：藏文用藏文字体 ---------- */
+.VPLocalSearchBox input, .VPLocalSearchBox .title, .VPLocalSearchBox .excerpt {
+  font-family: "Noto Serif Tibetan Web", var(--vp-font-family-base);
+}
+
+/* ---------- 手机 / 窄屏 ---------- */
+@media (max-width: 640px) {
+  .rz-header { padding: 16px 14px 6px; gap: 8px; }
+  .rz-logo img { height: 46px; }
+  .rz-btn { height: 40px; padding: 0 10px; font-size: 14px; gap: 6px; }
+  .rz-btn .tib { font-size: 13px; }
+  .rz-search { min-width: 0; flex: 1 1 auto; }
+  .rz-tone .tib { display: none; }   /* 手机上色调按钮只留图标 */
+
+  .rz-home, .rz-cat { padding: 24px 14px 16px; }
+  .rz-home .rz-h-tib { font-size: 22px; }
+  .rz-cat .rz-h-tib { font-size: 21px; margin-bottom: 28px; }
+  .rz-home .rz-h-zh { font-size: 18px; margin-bottom: 28px; }
+
+  .rz-catalog .rz-list { gap: 14px; }
+  .rz-catalog .rz-item { min-height: 66px; padding: 12px 14px; border-radius: 14px; }
+  .rz-catalog .rz-item-title { font-size: 18px; }
+
+  .rz-catalog .rz-medals { row-gap: 32px; column-gap: 10px; }
+  .rz-catalog .rz-medal-ring { width: 92px; height: 92px; border-width: 6px; box-shadow: inset 0 0 0 3px var(--rz-paper), inset 0 0 0 4px var(--rz-seal); }
+  .rz-catalog .rz-medal-letter { font-size: 34px; padding-bottom: 4px; }
+
+  .rz-text { padding: 20px 16px 16px; }
+  .rz-text .rz-t-title { font-size: 21px; }
+  .rz-text .bo, .rz-text .bo-verse { font-size: 18px; }
+  .rz-footer-icon { height: 46px; }
+}
