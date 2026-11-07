@@ -3,13 +3,13 @@ import { withPwa } from '@vite-pwa/vitepress'
 import { fileURLToPath, URL } from 'node:url'
 
 // ============================================================
-// 竹巴噶举妙法如意宝藏 · 站点总配置
-// 以竹巴噶举网站（drukpa-library）为底本修改：纯藏文、无简繁切换。
+// 妙法如意宝藏 · 站点总配置
+// 以竹巴噶举网站（drukpa-library）为底本修改：纯藏文、无简繁切换；收录不限于竹巴噶举。
 // ============================================================
 
 const SITE_URL = 'https://example.org'          // ← 域名确定后改这里
-const SITE_TITLE = 'དཔལ་འབྲུག་པའི་དམ་ཆོས་ནོར་བུའི་བང་མཛོད།'
-const SITE_TITLE_ZH = '竹巴噶举妙法如意宝藏'   // 仅作备注，网页上不显示
+const SITE_TITLE = 'དམ་ཆོས་ནོར་བུའི་བང་མཛོད།'
+const SITE_TITLE_ZH = '妙法如意宝藏'   // 仅作备注，网页上不显示
 const APP_NAME = 'ནོར་བུའི་བང་མཛོད'
 
 // ===== 图片/大文件存放地址（Cloudflare R2 对象存储）=====

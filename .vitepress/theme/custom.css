@@ -180,7 +180,7 @@ body {
   transform: translateY(-2px);
   box-shadow: var(--rz-shadow);
 }
-.rz-catalog .rz-item-mark { color: var(--rz-ink-2); font-size: 18px; flex: none; }
+.rz-catalog .rz-item-mark { width: 24px; height: 24px; flex: none; }
 .rz-catalog .rz-item-title {
   font-family: "Noto Serif Tibetan Web", serif;
   font-size: 21px;
@@ -321,6 +321,7 @@ body {
   .rz-catalog .rz-list { gap: 14px; }
   .rz-catalog .rz-item { min-height: 66px; padding: 12px 14px; border-radius: 14px; }
   .rz-catalog .rz-item-title { font-size: 18px; }
+  .rz-catalog .rz-item-mark { width: 20px; height: 20px; }
 
   .rz-catalog .rz-medals { row-gap: 32px; column-gap: 10px; }
   .rz-catalog .rz-medal-ring { width: 92px; height: 92px; border-width: 6px; box-shadow: inset 0 0 0 3px var(--rz-paper), inset 0 0 0 4px var(--rz-seal); }

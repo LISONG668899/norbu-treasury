@@ -19,7 +19,7 @@ export default {
       'layout-bottom': () =>
         h('footer', { class: 'rz-footer' }, [
           h('img', { class: 'rz-footer-icon', src: withBase('/logo.png'), alt: '' }),
-          h('div', { class: 'rz-footer-text' }, '© ༢༠༢༧ འབྲུག་པ་བཀའ་བརྒྱུད་ཀྱི་དམ་ཆོས་ཡིད་བཞིན་ནོར་བུ།')
+          h('div', { class: 'rz-footer-text' }, '© ༢༠༢༧ དམ་ཆོས་ཡིད་བཞིན་ནོར་བུ།')
         ])
     })
   }

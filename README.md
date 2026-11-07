@@ -1,6 +1,6 @@
-# 竹巴噶举妙法如意宝藏（དཔལ་འབྲུག་པའི་དམ་ཆོས་ནོར་བུའི་བང་མཛོད།）
+# 妙法如意宝藏（དམ་ཆོས་ནོར་བུའི་བང་མཛོད།）
 
-纯藏文网站。以竹巴噶举网站（drukpa-library）为底本修改：VitePress 1.6.4 + Cloudflare Pages + PWA。
+纯藏文网站，收录不限于竹巴噶举。以竹巴噶举网站（drukpa-library）为底本修改：VitePress 1.6.4 + Cloudflare Pages + PWA。
 
 ## 本地运行
 

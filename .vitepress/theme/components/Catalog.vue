@@ -28,7 +28,7 @@ const style = computed(() => cat.value.style || 'list')
       </div>
       <div v-else class="rz-list">
         <a v-for="it in items" :key="it.link" class="rz-item" :href="withBase(it.link)">
-          <span class="rz-item-mark" aria-hidden="true">❁</span>
+          <img class="rz-item-mark" :src="withBase('/wheel-sm.png')" alt="" aria-hidden="true" />
           <span class="rz-item-title">{{ it.title }}</span>
           <span v-if="it.sub" class="rz-item-sub">{{ it.sub }}</span>
         </a>
