@@ -110,13 +110,21 @@ body::before {
 .VPNav, .VPLocalNav { display: none !important; }
 .VPContent { padding-top: 0 !important; }
 
+/* 手机点按时不出现灰色闪块；键盘操作时显示清楚的焦点框（无障碍） */
+a, button { -webkit-tap-highlight-color: transparent; }
+:focus-visible { outline: 2px solid var(--pk-brand); outline-offset: 2px; border-radius: 6px; }
+/* 切换色调时颜色平滑过渡 */
+body, .pk-item, .pk-searchbox, .pk-tone, .pk-lang, .pk-bottomnav { transition: background-color .25s, border-color .25s, color .25s; }
+/* 深色模式：绛红色标志提亮一点，避免发闷 */
+.dark .pk-logo img, .dark .pk-logo-sm img, .dark .pk-footer-icon { filter: brightness(1.35) saturate(1.1); }
+
 /* ============ 顶部：搜索 · 色调 · 语言 ============ */
 .pk-header {
   box-sizing: border-box;
   width: 100%;
   max-width: var(--page-w);
   margin: 0 auto;
-  padding: var(--s4) var(--s3) 0;
+  padding: var(--s3) var(--s3) 0;     /* 上方留白 = 下方留白（见 .pk-titlerow 的上边距） */
   display: flex;
   align-items: center;
   gap: var(--s1);
@@ -197,7 +205,7 @@ body::before {
   width: 100%;
   max-width: var(--page-w);
   margin: 0 auto;
-  padding: var(--s3) var(--s3) var(--s3);
+  padding: var(--s3) var(--s3) var(--s4);
   display: grid;
   grid-template-columns: auto 1fr;
   align-items: center;
@@ -329,6 +337,7 @@ a.pk-item:hover { border-color: var(--pk-brand); transform: translateY(-1px); }
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: var(--s3) var(--s2);
+  padding-top: var(--s1);
 }
 /* 最后一行只剩两个时：一左一右，像两条腿（按示意图） */
 .pk-shrines .pk-shrine:last-child:nth-child(4n + 2) { grid-column: 4; }
@@ -377,7 +386,7 @@ a.pk-shrine:hover .pk-shrine-letter { color: var(--vp-c-brand-2); }
 /* ============ 底部导航：页面短时在页尾，长时贴住屏幕底 ============ */
 .pk-bottomnav {
   position: sticky;
-  bottom: 12px;
+  bottom: calc(12px + env(safe-area-inset-bottom, 0px));   /* 避开 iPhone 底部横条 */
   z-index: 20;
   box-sizing: border-box;
   width: calc(100% - 2 * var(--s3));
@@ -413,8 +422,8 @@ a.pk-shrine:hover .pk-shrine-letter { color: var(--vp-c-brand-2); }
 /* ============ 页脚（不加分隔线） ============ */
 .pk-footer {
   max-width: var(--page-w);
-  margin: var(--s4) auto 0;
-  padding: 0 var(--s3) var(--s6);
+  margin: var(--s6) auto 0;
+  padding: 0 var(--s3) calc(var(--s6) + env(safe-area-inset-bottom, 0px));
   text-align: center;
 }
 .pk-footer-icon { height: 56px; width: auto; display: inline-block; margin-bottom: var(--s1); }
@@ -563,7 +572,7 @@ a.pk-shrine:hover .pk-shrine-letter { color: var(--vp-c-brand-2); }
   .pk-tone { padding: 0 10px; }
   .pk-tone-label { display: none; }        /* 手机上色调只留图标，给搜索框让位 */
   .pk-lang { padding: 0 10px; }
-  .pk-titlerow { padding: var(--s2); column-gap: var(--s1); }
+  .pk-titlerow { padding: var(--s2) var(--s2) var(--s3); column-gap: var(--s1); }
   .pk-textbar { padding: var(--s1) var(--s2) 0; }
   .pk-logo-sm img { height: 48px; }
   .pk-save { height: 34px; padding: 0 12px; }
