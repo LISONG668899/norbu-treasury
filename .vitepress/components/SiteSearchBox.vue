@@ -70,7 +70,8 @@ const { localeIndex, theme } = vitePressData
 const searchIndex = computedAsync(async () =>
   markRaw(
     MiniSearch.loadJSON<Result>(
-      (await searchIndexData.value[localeIndex.value]?.())?.default,
+      // 各语言网址都搜索同一份藏文索引（经文只有藏文）
+      (await searchIndexData.value['root']?.())?.default,
       {
         fields: ['title', 'titles', 'text'],
         storeFields: ['title', 'titles'],

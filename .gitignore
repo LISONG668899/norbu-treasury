@@ -2,3 +2,7 @@ node_modules/
 .vitepress/cache/
 .vitepress/dist/
 public/media/
+# 语言目录由 scripts/gen-locales.mjs 自动生成
+/zh/
+/zh-hant/
+/en/

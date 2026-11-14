@@ -2,8 +2,8 @@
   "name": "norbu-treasury",
   "private": true,
   "scripts": {
-    "docs:dev": "vitepress dev",
-    "docs:build": "vitepress build",
+    "docs:dev": "node scripts/gen-locales.mjs && vitepress dev",
+    "docs:build": "node scripts/gen-locales.mjs && vitepress build",
     "docs:preview": "vitepress preview"
   },
   "devDependencies": {

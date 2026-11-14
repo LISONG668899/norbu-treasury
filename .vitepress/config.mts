@@ -3,14 +3,14 @@ import { withPwa } from '@vite-pwa/vitepress'
 import { fileURLToPath, URL } from 'node:url'
 
 // ============================================================
-// 妙法如意宝藏 · 站点总配置
+// PUNDARIKA · པདྨ་དཀར་པོ། · 站点总配置
 // 以竹巴噶举网站（drukpa-library）为底本修改：纯藏文、无简繁切换；收录不限于竹巴噶举。
 // ============================================================
 
 const SITE_URL = 'https://example.org'          // ← 域名确定后改这里
-const SITE_TITLE = 'དམ་ཆོས་ནོར་བུའི་བང་མཛོད།'
-const SITE_TITLE_ZH = '妙法如意宝藏'   // 仅作备注，网页上不显示
-const APP_NAME = 'ནོར་བུའི་བང་མཛོད'
+const SITE_TITLE = 'པདྨ་དཀར་པོ།'
+const SITE_TITLE_ZH = '白莲'   // 仅作备注，网页上不显示
+const APP_NAME = 'PUNDARIKA'
 
 // ===== 图片/大文件存放地址（Cloudflare R2 对象存储）=====
 // 唐卡高清图、PDF 原件等大文件不放进本仓库，而是放在 R2，网页里只放链接。
@@ -23,6 +23,15 @@ const MEDIA_BASE = (process.env.VITE_MEDIA_BASE || '').replace(/\/$/, '')
 export default withPwa(defineConfig({
   base: '/',
   lang: 'bo',
+
+  // ===== 多语言网址（VitePress 自带）=====
+  // 根目录 = 藏文；/zh/ /zh-hant/ /en/ 由 scripts/gen-locales.mjs 自动生成，只翻译网站结构
+  locales: {
+    root: { label: 'བོད་ཡིག', lang: 'bo' },
+    zh: { label: '简体中文', lang: 'zh-CN', link: '/zh/', description: '白莲 · 藏文佛典' },
+    'zh-hant': { label: '繁體中文', lang: 'zh-TW', link: '/zh-hant/', description: '白蓮 · 藏文佛典' },
+    en: { label: 'English', lang: 'en', link: '/en/', description: 'Pundarika · Tibetan Buddhist texts' }
+  },
 
   title: SITE_TITLE,
   titleTemplate: `:title | ${APP_NAME}`,
@@ -56,7 +65,9 @@ export default withPwa(defineConfig({
     ['link', { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' }],
     ['link', { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' }],
     ['link', { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' }],
-    ['meta', { name: 'theme-color', content: '#9a5b2e' }],
+    ['meta', { name: 'theme-color', content: '#8b2635' }],
+    // 声明不同意 AI 训练使用本站内容（配合 public/robots.txt 与 Cloudflare 的 AI 爬虫拦截）
+    ['meta', { name: 'robots', content: 'noai, noimageai' }],
     ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
     ['meta', { name: 'apple-mobile-web-app-title', content: APP_NAME }]
   ],
@@ -126,8 +137,8 @@ export default withPwa(defineConfig({
       short_name: APP_NAME,
       description: SITE_TITLE,
       lang: 'bo',
-      theme_color: '#9a5b2e',
-      background_color: '#f3efe6',
+      theme_color: '#8b2635',
+      background_color: '#ece4d7',
       display: 'standalone',
       scope: '/',
       start_url: '/',
