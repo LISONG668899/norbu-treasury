@@ -1,7 +1,8 @@
 ---
 layout: page
-title: ཆོས་འབྱུང་དང་ལོ་རྒྱུས་སྐོར། གླེགས་བམ་ཀ
+title: གླེགས་བམ་ཀ།
 # 第三层：本函所收各篇（长条按钮）
+search: false
 catalog:
   style: list
   items:

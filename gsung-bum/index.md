@@ -1,36 +1,62 @@
 ---
 layout: page
 title: གསུང་འབུམ་སྣ་ཚོགས་ཀྱི་སྐོར།
-# 第二层：经龛（函号）ཀ–ལ。某函内容做好后，在该字母下补一行 link（如 link: /gsung-bum/ka/），并建同名文件夹
+# 第二层：经龛（函号）ཀ–ལ，每个都能点，进入第三层该函的篇目页（/gsung-bum/ka/ 等）
 catalog:
   style: shrine
   items:
     - title: ཀ
+      link: /gsung-bum/ka/
     - title: ཁ
+      link: /gsung-bum/kha/
     - title: ག
+      link: /gsung-bum/ga/
     - title: ང
+      link: /gsung-bum/nga/
     - title: ཅ
+      link: /gsung-bum/ca/
     - title: ཆ
+      link: /gsung-bum/cha/
     - title: ཇ
+      link: /gsung-bum/ja/
     - title: ཉ
+      link: /gsung-bum/nya/
     - title: ཏ
+      link: /gsung-bum/ta/
     - title: ཐ
+      link: /gsung-bum/tha/
     - title: ད
+      link: /gsung-bum/da/
     - title: ན
+      link: /gsung-bum/na/
     - title: པ
+      link: /gsung-bum/pa/
     - title: ཕ
+      link: /gsung-bum/pha/
     - title: བ
+      link: /gsung-bum/ba/
     - title: མ
+      link: /gsung-bum/ma/
     - title: ཙ
+      link: /gsung-bum/tsa/
     - title: ཚ
+      link: /gsung-bum/tsha/
     - title: ཛ
+      link: /gsung-bum/dza/
     - title: ཝ
+      link: /gsung-bum/wa/
     - title: ཞ
+      link: /gsung-bum/zha/
     - title: ཟ
+      link: /gsung-bum/za/
     - title: འ
+      link: /gsung-bum/a/
     - title: ཡ
+      link: /gsung-bum/ya/
     - title: ར
+      link: /gsung-bum/ra/
     - title: ལ
+      link: /gsung-bum/la/
 ---
 
 <Catalog />

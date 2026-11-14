@@ -1,36 +1,62 @@
 ---
 layout: page
 title: དཔེ་ཚོགས་ཕྱོགས་བསྒྲིགས་སྐོར།
-# 第二层：经龛（函号）ཀ–ལ。某函内容做好后，在该字母下补一行 link（如 link: /dpe-tshogs/ka/），并建同名文件夹
+# 第二层：经龛（函号）ཀ–ལ，每个都能点，进入第三层该函的篇目页（/dpe-tshogs/ka/ 等）
 catalog:
   style: shrine
   items:
     - title: ཀ
+      link: /dpe-tshogs/ka/
     - title: ཁ
+      link: /dpe-tshogs/kha/
     - title: ག
+      link: /dpe-tshogs/ga/
     - title: ང
+      link: /dpe-tshogs/nga/
     - title: ཅ
+      link: /dpe-tshogs/ca/
     - title: ཆ
+      link: /dpe-tshogs/cha/
     - title: ཇ
+      link: /dpe-tshogs/ja/
     - title: ཉ
+      link: /dpe-tshogs/nya/
     - title: ཏ
+      link: /dpe-tshogs/ta/
     - title: ཐ
+      link: /dpe-tshogs/tha/
     - title: ད
+      link: /dpe-tshogs/da/
     - title: ན
+      link: /dpe-tshogs/na/
     - title: པ
+      link: /dpe-tshogs/pa/
     - title: ཕ
+      link: /dpe-tshogs/pha/
     - title: བ
+      link: /dpe-tshogs/ba/
     - title: མ
+      link: /dpe-tshogs/ma/
     - title: ཙ
+      link: /dpe-tshogs/tsa/
     - title: ཚ
+      link: /dpe-tshogs/tsha/
     - title: ཛ
+      link: /dpe-tshogs/dza/
     - title: ཝ
+      link: /dpe-tshogs/wa/
     - title: ཞ
+      link: /dpe-tshogs/zha/
     - title: ཟ
+      link: /dpe-tshogs/za/
     - title: འ
+      link: /dpe-tshogs/a/
     - title: ཡ
+      link: /dpe-tshogs/ya/
     - title: ར
+      link: /dpe-tshogs/ra/
     - title: ལ
+      link: /dpe-tshogs/la/
 ---
 
 <Catalog />

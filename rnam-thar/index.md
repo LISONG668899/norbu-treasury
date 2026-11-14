@@ -1,36 +1,62 @@
 ---
 layout: page
 title: རྣམ་ཐར་གསེར་ཕྲེང་གི་སྐོར།
-# 第二层：经龛（函号）ཀ–ལ。某函内容做好后，在该字母下补一行 link（如 link: /rnam-thar/ka/），并建同名文件夹
+# 第二层：经龛（函号）ཀ–ལ，每个都能点，进入第三层该函的篇目页（/rnam-thar/ka/ 等）
 catalog:
   style: shrine
   items:
     - title: ཀ
+      link: /rnam-thar/ka/
     - title: ཁ
+      link: /rnam-thar/kha/
     - title: ག
+      link: /rnam-thar/ga/
     - title: ང
+      link: /rnam-thar/nga/
     - title: ཅ
+      link: /rnam-thar/ca/
     - title: ཆ
+      link: /rnam-thar/cha/
     - title: ཇ
+      link: /rnam-thar/ja/
     - title: ཉ
+      link: /rnam-thar/nya/
     - title: ཏ
+      link: /rnam-thar/ta/
     - title: ཐ
+      link: /rnam-thar/tha/
     - title: ད
+      link: /rnam-thar/da/
     - title: ན
+      link: /rnam-thar/na/
     - title: པ
+      link: /rnam-thar/pa/
     - title: ཕ
+      link: /rnam-thar/pha/
     - title: བ
+      link: /rnam-thar/ba/
     - title: མ
+      link: /rnam-thar/ma/
     - title: ཙ
+      link: /rnam-thar/tsa/
     - title: ཚ
+      link: /rnam-thar/tsha/
     - title: ཛ
+      link: /rnam-thar/dza/
     - title: ཝ
+      link: /rnam-thar/wa/
     - title: ཞ
+      link: /rnam-thar/zha/
     - title: ཟ
+      link: /rnam-thar/za/
     - title: འ
+      link: /rnam-thar/a/
     - title: ཡ
+      link: /rnam-thar/ya/
     - title: ར
+      link: /rnam-thar/ra/
     - title: ལ
+      link: /rnam-thar/la/
 ---
 
 <Catalog />
