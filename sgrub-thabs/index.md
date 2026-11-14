@@ -1,13 +1,10 @@
 ---
 layout: page
-title: སྒྲུབ་ཐབས་དང་ཆོ་ག་ཆོས་སྤྱོད་སྐོར།
-# 第二层：在 items 里逐条加入下层目录
+title: སྒྲུབ་ཐབས་དང་ཆོ་གའི་སྐོར།
+# 第二层：两列按钮，在 items 里逐条加入
 catalog:
-  style: list
+  style: grid
   items: []
 ---
 
-<div class="rz-cat">
-<h1 class="rz-h-tib">སྒྲུབ་ཐབས་དང་ཆོ་ག་ཆོས་སྤྱོད་སྐོར།</h1>
 <Catalog />
-</div>

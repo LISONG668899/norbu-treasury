@@ -18,8 +18,8 @@ const showSearch = ref(false)
 const isHome = computed(() => rootPathOf(route.path).replace(/index\.html$/, '') === '/')
 const isText = computed(() => frontmatter.value.text === true)
 const title = computed(() => String(frontmatter.value.title || page.value.title || ''))
-// 语言网址的目录页：frontmatter.title 是译名，title_bo 是藏文原名
-const titleBo = computed(() => String(frontmatter.value.title_bo || ''))
+// 目录页标题一律藏文；收藏、留言等界面页（ui_page）标题由生成脚本换成该语言
+const isUiPage = computed(() => frontmatter.value.ui_page === true)
 const path = computed(() => route.path)
 const homeLink = computed(() => withBase(localePath(lang.value, '/')))
 
@@ -119,12 +119,11 @@ function onLang(e: Event) {
       <img :src="withBase('/logo-lotus.png')" alt="PUNDARIKA" />
     </a>
     <div class="pk-title">
-      <h1 class="pk-title-main" :class="{ 'is-bo': lang === 'bo' || !titleBo }">
+      <h1 class="pk-title-main" :class="{ 'is-bo': lang === 'bo' || !isUiPage }">
         <template v-if="isHome">{{ title }}</template>
-        <template v-else-if="lang === 'bo' || !titleBo">༼{{ title }}༽</template>
-        <template v-else>{{ title }}</template>
+        <template v-else-if="isUiPage && lang !== 'bo'">{{ title }}</template>
+        <template v-else>༼{{ title }}༽</template>
       </h1>
-      <p v-if="titleBo" class="pk-title-sub">{{ titleBo }}</p>
     </div>
   </div>
 

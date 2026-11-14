@@ -6,7 +6,6 @@
 //     items:
 //       - title: ཀུན་མཁྱེན་བཀའ་འབུམ།
 //         link: /gsung-bum/kun-mkhyen/
-//         i18n: { zh: 遍知全集, zht: 遍知全集, en: Collected Works of the Omniscient }
 //       - title: ཀ              # 没有 link 的项目显示为灰色、暂不可点
 //
 // 新增一项只要加一行；某函内容做好后补上 link 即可。
@@ -14,10 +13,12 @@ import { computed } from 'vue'
 import { useData, withBase } from 'vitepress'
 import { useI18n } from '../i18n'
 
-interface Item { title: string; link?: string; i18n?: Record<string, string> }
+// 目录一律只显示藏文；只有“内容即将上线”等界面提示随语言切换
+
+interface Item { title: string; link?: string }
 
 const { frontmatter } = useData()
-const { lang, t, tr } = useI18n()
+const { t } = useI18n()
 const cat = computed(() => frontmatter.value.catalog || {})
 const items = computed<Item[]>(() => cat.value.items || [])
 const style = computed(() => cat.value.style || 'list')
@@ -61,12 +62,7 @@ const style = computed(() => cat.value.style || 'list')
         :class="{ off: !it.link }"
         :href="it.link ? withBase(it.link) : undefined"
       >
-        <!-- 藏文网址：只显示藏文；语言网址：译名在上、藏文在下 -->
-        <template v-if="tr(it.i18n)">
-          <span class="pk-item-main">{{ tr(it.i18n) }}</span>
-          <span class="pk-item-sub">{{ it.title }}</span>
-        </template>
-        <span v-else class="pk-item-bo">{{ it.title }}</span>
+        <span class="pk-item-bo">{{ it.title }}</span>
       </component>
     </div>
   </div>

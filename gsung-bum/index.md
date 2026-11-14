@@ -1,13 +1,14 @@
 ---
 layout: page
-title: གསུང་འབུམ་གྱི་སྡེ་ཚན།
-# 第二层：在 items 里逐条加入下层目录
+title: གསུང་འབུམ་སྣ་ཚོགས་ཀྱི་སྐོར།
+# 第二层：两列按钮
 catalog:
-  style: list
-  items: []
+  style: grid
+  items:
+    - title: ཀུན་མཁྱེན་བཀའ་འབུམ།
+      link: /gsung-bum/kun-mkhyen/
+    - title: རྒྱ་རས་བཀའ་འབུམ།
+      link: /gsung-bum/rgya-ras/
 ---
 
-<div class="rz-cat">
-<h1 class="rz-h-tib">གསུང་འབུམ་གྱི་སྡེ་ཚན།</h1>
 <Catalog />
-</div>

@@ -27,15 +27,13 @@
 
 目录样式：`catalog.style` 填 list（长条）、grid（两列）或 shrine（经龛）。
 没有 link 的项目显示为暂不可点；内容做好后补上 link 并建对应文件夹。
-界面多语言：藏文 / 简体 / 繁體 / English，词条在 `.vitepress/theme/i18n.ts`；
-目录标题译名写在 frontmatter 的 `title_i18n` 和每项的 `i18n`。
 
 ## 多语言网址
 
-藏文在根目录 `/`；简体 `/zh/`、繁體 `/zh-hant/`、English `/en/` 只翻译网站结构（标题、目录、按钮），
+藏文在根目录 `/`；简体 `/zh/`、繁體 `/zh-hant/`、English `/en/` 只翻译基础架构（按钮、导航、提示语）；目录和经文一律只用藏文，页面上不混排两种文字的译名，
 由 `scripts/gen-locales.mjs` 在 `npm run docs:dev` / `docs:build` 时根据藏文目录页自动生成，不必手写，也不进仓库。
 经文页只有藏文一份；目录里指向经文的链接在各语言网址下都指回藏文页。
-译名写在藏文页 frontmatter 的 `title_i18n` 和每项的 `i18n`；界面词条在 `.vitepress/theme/i18n.ts`。
+界面词条在 `.vitepress/theme/i18n.ts`；收藏、留言等界面页（`ui_page: true`）的标题译名写在其 `title_i18n`。
 
 ## 段落翻译（Claude Haiku 5.5）
 

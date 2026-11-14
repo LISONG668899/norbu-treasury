@@ -1,15 +1,13 @@
 // ============================================================
-// 界面多语言（只翻译网站结构：按钮、导航、目录标题；经文正文永远是藏文）
+// 界面多语言（只翻译网站的基础架构：按钮、导航、提示语；目录与经文永远只用藏文）
 // ------------------------------------------------------------
 // 用 VitePress 自带的多语言网址：
 //   /           藏文（根目录，经文页面只放在这里）
 //   /zh/        简体中文      /zh-hant/  繁體中文      /en/  English
 // /zh/ 等目录由 scripts/gen-locales.mjs 在构建时根据藏文目录页自动生成，不必手写。
 // 经文页只有一份（藏文网址），其按钮语言跟随读者上次选择的语言（存在本机浏览器）。
-// 目录标题译名写在藏文页 frontmatter：
-//   title_i18n: { zh: 简体名, zht: 繁體名, en: English name }
-//   items 里每项：  i18n: { zh: …, zht: …, en: … }
-// 缺繁体时用简体；缺译名时显示藏文。
+// 页面上不混排：选中文就只显示中文界面，选英文就只显示英文界面；目录、经文保持藏文。
+// 收藏、留言这类界面页的标题译名写在其 frontmatter 的 title_i18n。
 // ============================================================
 import { computed, ref } from 'vue'
 import { useData, useRoute } from 'vitepress'
@@ -101,13 +99,7 @@ const UI: Record<string, Record<Lang, string>> = {
   }
 }
 
-function pick(i18n: Partial<Record<Lang, string>> | undefined, l: Lang): string {
-  if (!i18n || l === 'bo') return ''
-  if (l === 'zht') return i18n.zht || i18n.zh || ''
-  return i18n[l] || ''
-}
-
-/** 在组件里使用：const { lang, t, tr } = useI18n() */
+/** 在组件里使用：const { lang, t } = useI18n() */
 export function useI18n() {
   const route = useRoute()
   const { frontmatter } = useData()
@@ -120,7 +112,5 @@ export function useI18n() {
     const e = UI[key]
     return e ? e[lang.value] || e.bo : key
   }
-  /** 目录标题译名；藏文界面返回空 */
-  const tr = (i18n?: Partial<Record<Lang, string>>) => pick(i18n, lang.value)
-  return { lang, t, tr }
+  return { lang, t }
 }

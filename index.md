@@ -1,27 +1,24 @@
 ---
 layout: page
-title: དམ་ཆོས་ནོར་བུའི་བང་མཛོད།
-# 首页七大类：顺序即显示顺序；新增一类只需加两行
+title: པདྨ་དཀར་པོ།
+# 首页七大类：顺序即显示顺序；新增一类只需加几行
 catalog:
   style: list
   items:
-    - title: དཔལ་འབྲུག་པའི་ཆོས་མཛོད་ཆེན་མོ།
-      link: /chos-mdzod/
-    - title: གསུང་འབུམ་གྱི་སྡེ་ཚན།
+    - title: བཀའ་དང་བསྟན་བཅོས་ཀྱི་སྐོར།
+      link: /ka-bstan/
+    - title: གསུང་འབུམ་སྣ་ཚོགས་ཀྱི་སྐོར།
       link: /gsung-bum/
-    - title: དཀར་བརྒྱུད་གོང་མའི་རྣམ་ཐར་སྐོར།
-      link: /rnam-thar/
-    - title: ཕྱོགས་བསྒྲིགས་ཀྱི་སྡེ་ཚན།
-      link: /phyogs-bsgrigs/
-    - title: སྒྲུབ་ཐབས་དང་ཆོ་ག་ཆོས་སྤྱོད་སྐོར།
-      link: /sgrub-thabs/
-    - title: ཆོས་འབྱུང་དང་ལོ་རྒྱུས་ཀྱི་སྡེ་ཚན།
+    - title: དཔེ་ཚོགས་ཕྱོགས་བསྒྲིགས་སྐོར།
+      link: /dpe-tshogs/
+    - title: ཆོས་འབྱུང་དང་ལོ་རྒྱུས་སྐོར།
       link: /chos-byung/
-    - title: ཉེར་མཁོ་དང་རྒྱུན་ཤེས་ཀྱི་སྐོར།
-      link: /nyer-mkho/
+    - title: རྣམ་ཐར་གསེར་ཕྲེང་གི་སྐོར།
+      link: /rnam-thar/
+    - title: སྒྲུབ་ཐབས་དང་ཆོ་གའི་སྐོར།
+      link: /sgrub-thabs/
+    - title: གནའ་དེང་རིག་གཞུང་གི་སྐོར།
+      link: /rig-gzhung/
 ---
 
-<div class="rz-home">
-<h1 class="rz-h-tib">༄༅། །དམ་ཆོས་ནོར་བུའི་བང་མཛོད། །</h1>
 <Catalog />
-</div>

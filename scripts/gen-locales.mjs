@@ -3,7 +3,7 @@
 // ------------------------------------------------------------
 // 只需维护藏文目录页（根目录）。每次 npm run docs:dev / docs:build 时，
 // 本脚本把每个“非经文”的藏文页面复制到三个语言目录：
-//   · 页面标题换成 title_i18n 里的译名（原藏文名放进 title_bo，显示在下一行）
+//   · 目录内容（标题、条目）一律保持藏文；只有收藏、留言等界面页（ui_page: true）的标题换成 title_i18n 里的译名
 //   · 目录链接改到同语言网址；指向经文页（text: true）的链接保持藏文网址不变
 // 经文页不复制——正文只有藏文一份。生成的目录已列入 .gitignore，不必上传。
 // ============================================================
@@ -65,7 +65,6 @@ for (const f of files) {
   const url = urlOf(f)
   if (textUrls.has(url)) continue
   const { fm, body } = split(fs.readFileSync(f, 'utf8'))
-  const titleBo = (fm.match(/^title:\s*(.+)$/m) || [])[1]?.trim() || ''
   const ti = fm.match(/^title_i18n:\s*(\{.*\})\s*$/m)
   const map = ti ? parseInlineMap(ti[1]) : {}
 
@@ -75,8 +74,8 @@ for (const f of files) {
       // 链接改到本语言网址（经文页除外）
       .replace(/^(\s*link:\s*)(\/\S*)\s*$/gm, (all, pre, link) =>
         textUrls.has(link) ? all : `${pre}/${l.dir}${link}`)
-    if (tr) {
-      out = out.replace(/^title:\s*.+$/m, `title: ${yamlStr(tr)}\ntitle_bo: ${titleBo}`)
+    if (tr && /^ui_page:\s*true\s*$/m.test(fm)) {
+      out = out.replace(/^title:\s*.+$/m, `title: ${yamlStr(tr)}`)
     }
     if (!/^search:/m.test(out)) out += "\nsearch: false"
     out = `# 此文件由 scripts/gen-locales.mjs 自动生成，请勿手改（改藏文原页即可）\n${out}`
