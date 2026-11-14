@@ -1,0 +1,12 @@
+---
+layout: page
+title: ཆོས་འབྱུང་དང་ལོ་རྒྱུས་སྐོར། གླེགས་བམ་ཀ
+# 第三层：本函所收各篇（长条按钮）
+catalog:
+  style: list
+  items:
+    - title: བསྟན་པ་སྤྱིའི་ཆོས་འབྱུང་བསྟན་པའི་པདྨོ་རྒྱས་པའི་ཉིན་བྱེད།
+      link: /chos-byung/pad-dkar-chos-byung/
+---
+
+<Catalog />
