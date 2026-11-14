@@ -252,6 +252,8 @@ a.pk-item:hover { border-color: var(--pk-brand); transform: translateY(-2px); }
   grid-template-columns: repeat(4, 1fr);
   gap: 26px 18px;
 }
+/* 最后一行只剩两个时：一左一右，像两条腿（按示意图） */
+.pk-shrines .pk-shrine:last-child:nth-child(4n + 2) { grid-column: 4; }
 .pk-shrine {
   position: relative;
   display: block;
