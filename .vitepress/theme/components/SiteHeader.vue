@@ -3,9 +3,10 @@
 // 经文页（frontmatter text: true）：标题行换成“翻译”和“收藏”按钮，并记录阅读位置
 import { computed, defineAsyncComponent, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useData, useRoute, useRouter, withBase } from 'vitepress'
-import { LANGS, useI18n, loadPref, setPref, localeOf, rootPathOf, localePath, type Lang } from '../i18n'
+import { useI18n, loadPref, setPref, localeOf, rootPathOf, localePath, type Lang } from '../i18n'
 import { loadSaved, isSaved, toggleSaved, updatePos, getPos } from '../saved'
 import TranslateTool from './TranslateTool.vue'
+import LangMenu from './LangMenu.vue'
 
 const SearchBox = defineAsyncComponent(() => import('../../components/SiteSearchBox.vue'))
 
@@ -72,8 +73,7 @@ watch(path, () => { rememberLocale(); refreshSaved(); setTimeout(resumeIfAsked, 
 function toggleTone() { isDark.value = !isDark.value }
 
 // 切换语言：目录页跳到对应语言的网址；经文页只换按钮语言，正文不变
-function onLang(e: Event) {
-  const v = (e.target as HTMLSelectElement).value as Lang
+function onLang(v: Lang) {
   setPref(v)
   if (isText.value) return
   router.go(withBase(localePath(v, rootPathOf(route.path))))
@@ -103,15 +103,7 @@ function onLang(e: Event) {
       </svg>
     </button>
 
-    <label class="pk-lang" :title="t('language')">
-      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
-        <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6" />
-        <path d="M3 12h18M12 3c2.8 3 2.8 15 0 18M12 3c-2.8 3-2.8 15 0 18" fill="none" stroke="currentColor" stroke-width="1.4" />
-      </svg>
-      <select :aria-label="t('language')" @change="onLang">
-        <option v-for="l in LANGS" :key="l.code" :value="l.code" :selected="l.code === lang">{{ l.label }}</option>
-      </select>
-    </label>
+    <LangMenu :lang="lang" :label="t('language')" @pick="onLang" />
   </header>
 
   <div v-if="!isText" class="pk-titlerow" :class="{ 'is-home': isHome }">
