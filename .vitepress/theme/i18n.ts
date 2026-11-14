@@ -66,6 +66,7 @@ const UI: Record<string, Record<Lang, string>> = {
   search:      { bo: 'དཔེ་ཆ་འཚོལ་གནས།', zh: '全文搜索', zht: '全文搜尋', en: 'Search' },
   tone:        { bo: 'ཁ་དོག', zh: '色调', zht: '色調', en: 'Theme' },
   language:    { bo: 'སྐད་ཡིག', zh: '语言', zht: '語言', en: 'Language' },
+  about:       { bo: 'ང་ཚོའི་སྐོར།', zh: '关于我们', zht: '關於我們', en: 'About' },
   home:        { bo: 'མ་ངོས།', zh: '首页', zht: '首頁', en: 'Home' },
   saved:       { bo: 'ཉར་ཚགས།', zh: '收藏', zht: '收藏', en: 'Saved' },
   message:     { bo: 'བསམ་འཆར།', zh: '留言', zht: '留言', en: 'Message' },
