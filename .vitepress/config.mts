@@ -7,7 +7,7 @@ import { fileURLToPath, URL } from 'node:url'
 // 以竹巴噶举网站（drukpa-library）为底本修改：纯藏文、无简繁切换；收录不限于竹巴噶举。
 // ============================================================
 
-const SITE_URL = 'https://example.org'          // ← 域名确定后改这里
+const SITE_URL = 'https://www.lotustrove.org'   // 主网址；不带 www 的 lotustrove.org 会自动跳到这里
 const SITE_TITLE = 'པདྨ་དཀར་པོ།'
 const SITE_TITLE_ZH = '白莲'   // 仅作备注，网页上不显示
 const APP_NAME = 'PUNDARIKA'
