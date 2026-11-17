@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // 顶部：第一行 左边莲花标志 + 网站名，右边导航图标（含色调、语言）；第二行 搜索框独占一行；
 // 第三行 本页标题（首页不重复显示）。经文页（text: true）：标题行换成“翻译”“收藏”按钮，并记录阅读位置。
-import { computed, defineAsyncComponent, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useData, useRoute, useRouter, withBase } from 'vitepress'
 import { useI18n, loadPref, setPref, localeOf, rootPathOf, localePath, type Lang } from '../i18n'
 import { loadSaved, isSaved, toggleSaved, updatePos, getPos } from '../saved'
@@ -9,7 +9,7 @@ import TranslateTool from './TranslateTool.vue'
 import TopNav from './TopNav.vue'
 import { data as pages } from '../catalog.data.mts'
 
-const SearchBox = defineAsyncComponent(() => import('../../components/SiteSearchBox.vue'))
+import SearchInline from './SearchInline.vue'
 
 const { isDark, frontmatter, page } = useData()
 const route = useRoute()
@@ -84,12 +84,6 @@ onMounted(() => {
 onBeforeUnmount(() => window.removeEventListener('scroll', onScroll))
 watch(path, () => { rememberLocale(); refreshSaved(); setTimeout(resumeIfAsked, 50) })
 
-// 关掉搜索后让搜索框失去焦点（否则 iPad 上会留下焦点框）
-function closeSearch() {
-  showSearch.value = false
-  setTimeout(() => (document.activeElement as HTMLElement | null)?.blur(), 0)
-}
-
 function toggleTone() { isDark.value = !isDark.value }
 
 // 切换语言：目录页跳到对应语言的网址；经文页只换按钮语言，正文不变
@@ -101,6 +95,8 @@ function onLang(v: Lang) {
 </script>
 
 <template>
+  <!-- 页眉色带 + 搜索框：手机上一起固定在顶部 -->
+  <div class="pk-sticky">
   <div class="pk-band pk-band-top" :class="`ui-${lang}`">
   <header class="pk-top">
     <a class="pk-brand" :href="homeLink">
@@ -112,13 +108,8 @@ function onLang(v: Lang) {
   </div>
 
   <div class="pk-searchrow">
-    <button class="pk-searchbox" type="button" @click="showSearch = true">
-      <svg class="pk-search-ic" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-        <circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8" />
-        <path d="M15.5 15.5 21 21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
-      </svg>
-      <span class="pk-search-label">{{ t('search') }}</span>
-    </button>
+    <SearchInline />
+  </div>
   </div>
 
   <div v-if="!isText && !isHome" class="pk-pagetitle">
@@ -137,5 +128,4 @@ function onLang(v: Lang) {
     </button>
   </div>
 
-  <SearchBox v-if="showSearch" @close="closeSearch" />
 </template>
