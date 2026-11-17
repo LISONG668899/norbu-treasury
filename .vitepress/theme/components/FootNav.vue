@@ -17,7 +17,7 @@ const link = (p: string) => withBase(localePath(lang.value, p))
     <img class="pk-footer-icon" :src="withBase('/logo-vajra.png')" alt="" />
     <div class="pk-footer-text">© 2026 PUNDARIKA</div>
   </footer>
-  <div class="pk-band pk-band-bottom">
+  <div class="pk-band pk-band-bottom" :class="`ui-${lang}`">
     <nav class="pk-nav pk-footnav" :aria-label="t('about')">
       <a class="pk-nav-btn" :class="{ on: on('/about') }" :href="link('/about/')">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">

@@ -101,7 +101,7 @@ function onLang(v: Lang) {
 </script>
 
 <template>
-  <div class="pk-band pk-band-top">
+  <div class="pk-band pk-band-top" :class="`ui-${lang}`">
   <header class="pk-top">
     <a class="pk-brand" :href="homeLink">
       <img :src="withBase('/logo-flower.png')" alt="" />
