@@ -65,7 +65,7 @@ export default withPwa(defineConfig({
     ['link', { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' }],
     ['link', { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' }],
     ['link', { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' }],
-    ['meta', { name: 'theme-color', content: '#8b2635' }],
+    ['meta', { name: 'theme-color', content: '#f5d046' }],
     // 声明不同意 AI 训练使用本站内容（配合 public/robots.txt 与 Cloudflare 的 AI 爬虫拦截）
     ['meta', { name: 'robots', content: 'noai, noimageai' }],
     ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
@@ -137,8 +137,8 @@ export default withPwa(defineConfig({
       short_name: APP_NAME,
       description: SITE_TITLE,
       lang: 'bo',
-      theme_color: '#8b2635',
-      background_color: '#ece4d7',
+      theme_color: '#f5d046',
+      background_color: '#f5d046',
       display: 'standalone',
       scope: '/',
       start_url: '/',
@@ -150,11 +150,18 @@ export default withPwa(defineConfig({
     },
     workbox: {
       globPatterns: ['**/*.{js,css,html,woff2,png,svg,ico}'],
-      globIgnores: ['media/**'],
+      globIgnores: ['media/**', '**/noto-serif-*', '**/eb-garamond-*'],   // 字体小块不预先下载，用到时再缓存
       maximumFileSizeToCacheInBytes: 6 * 1024 * 1024,
       cleanupOutdatedCaches: true,
       // 浏览过的 R2 缩略图可以缓存少量（最多 300 张、30 天），原图不缓存
-      runtimeCaching: MEDIA_BASE
+      runtimeCaching: [
+        {
+          // 中文、英文字体小块：用到时缓存，以后离线也能显示
+          urlPattern: /\/assets\/(noto-serif|eb-garamond)-.*\.woff2?$/,
+          handler: 'CacheFirst',
+          options: { cacheName: 'fonts', expiration: { maxEntries: 400, maxAgeSeconds: 365 * 24 * 3600 } }
+        },
+        ...(MEDIA_BASE
         ? [
             {
               // 用正则（会被写进 service worker 文件，不能用函数引用外部变量）
@@ -166,7 +173,8 @@ export default withPwa(defineConfig({
               }
             }
           ]
-        : []
+        : [])
+      ]
     }
   }
 }))

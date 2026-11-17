@@ -39,7 +39,7 @@ onBeforeUnmount(() => { document.removeEventListener('click', onDoc); document.r
         <circle cx="12" cy="12" r="9" />
         <path d="M3 12h18M12 3c2.6 2.6 2.6 15.4 0 18M12 3c-2.6 2.6-2.6 15.4 0 18" />
       </svg>
-      <span class="pk-lang-short">{{ short }}</span>
+      <span>{{ label }}</span>
     </button>
     <ul v-if="open" class="pk-lang-pop" role="listbox">
       <li v-for="l in LANGS" :key="l.code">

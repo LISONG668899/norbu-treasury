@@ -1,11 +1,19 @@
 import DefaultTheme from 'vitepress/theme'
 import { h } from 'vue'
-import { withBase } from 'vitepress'
 import SiteHeader from './components/SiteHeader.vue'
+import FootNav from './components/FootNav.vue'
 import Catalog from './components/Catalog.vue'
 import SavedList from './components/SavedList.vue'
 import MessageForm from './components/MessageForm.vue'
 import MediaImage from './components/MediaImage.vue'
+// 字体：藏文 Noto Serif Tibetan（自带，见 custom.css）；中文 思源宋体（简 / 繁）；英文 EB Garamond。
+// 中文字体按字切成上百个小块，浏览器只下载页面上用到的字，很快。
+import '@fontsource/noto-serif-sc/400.css'
+import '@fontsource/noto-serif-sc/500.css'
+import '@fontsource/noto-serif-tc/400.css'
+import '@fontsource/noto-serif-tc/500.css'
+import '@fontsource/eb-garamond/400.css'
+import '@fontsource/eb-garamond/500.css'
 import './custom.css'
 
 export default {
@@ -20,12 +28,7 @@ export default {
   Layout() {
     return h(DefaultTheme.Layout, null, {
       'layout-top': () => h(SiteHeader),
-      'layout-bottom': () => [
-        h('footer', { class: 'pk-footer' }, [
-          h('img', { class: 'pk-footer-icon', src: withBase('/logo-vajra.png'), alt: '' }),
-          h('div', { class: 'pk-footer-text' }, '© 2027 PUNDARIKA')
-        ])
-      ]
+      'layout-bottom': () => h(FootNav)
     })
   }
 }

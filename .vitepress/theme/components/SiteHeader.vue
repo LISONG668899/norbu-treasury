@@ -84,6 +84,12 @@ onMounted(() => {
 onBeforeUnmount(() => window.removeEventListener('scroll', onScroll))
 watch(path, () => { rememberLocale(); refreshSaved(); setTimeout(resumeIfAsked, 50) })
 
+// 关掉搜索后让搜索框失去焦点（否则 iPad 上会留下焦点框）
+function closeSearch() {
+  showSearch.value = false
+  setTimeout(() => (document.activeElement as HTMLElement | null)?.blur(), 0)
+}
+
 function toggleTone() { isDark.value = !isDark.value }
 
 // 切换语言：目录页跳到对应语言的网址；经文页只换按钮语言，正文不变
@@ -95,6 +101,7 @@ function onLang(v: Lang) {
 </script>
 
 <template>
+  <div class="pk-band pk-band-top">
   <header class="pk-top">
     <a class="pk-brand" :href="homeLink">
       <img :src="withBase('/logo-flower.png')" alt="" />
@@ -102,6 +109,7 @@ function onLang(v: Lang) {
     </a>
     <TopNav @lang="onLang" />
   </header>
+  </div>
 
   <div class="pk-searchrow">
     <button class="pk-searchbox" type="button" @click="showSearch = true">
@@ -129,5 +137,5 @@ function onLang(v: Lang) {
     </button>
   </div>
 
-  <SearchBox v-if="showSearch" @close="showSearch = false" />
+  <SearchBox v-if="showSearch" @close="closeSearch" />
 </template>
