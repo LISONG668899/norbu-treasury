@@ -1,13 +1,13 @@
 // ============================================================
-// 界面多语言（只翻译网站的基础架构：按钮、导航、提示语；目录与经文永远只用藏文）
+// 界面多语言（翻译网站结构：按钮、导航、提示语、目录名称；经文正文永远只用藏文）
 // ------------------------------------------------------------
 // 用 VitePress 自带的多语言网址：
 //   /           藏文（根目录，经文页面只放在这里）
 //   /zh/        简体中文      /zh-hant/  繁體中文      /en/  English
 // /zh/ 等目录由 scripts/gen-locales.mjs 在构建时根据藏文目录页自动生成，不必手写。
 // 经文页只有一份（藏文网址），其按钮语言跟随读者上次选择的语言（存在本机浏览器）。
-// 页面上不混排：选中文就只显示中文界面，选英文就只显示英文界面；目录、经文保持藏文。
-// 收藏、留言这类界面页的标题译名写在其 frontmatter 的 title_i18n。
+// 页面上不混排：选哪种语言，界面和目录就只显示哪种文字；经文正文永远是藏文。
+// 目录的译名写在藏文页 frontmatter：页面标题用 title_i18n，目录条目用每项的 i18n。
 // ============================================================
 import { computed, ref } from 'vue'
 import { useData, useRoute } from 'vitepress'
@@ -68,6 +68,8 @@ const UI: Record<string, Record<Lang, string>> = {
   language:    { bo: 'སྐད་ཡིག', zh: '语言', zht: '語言', en: 'Language' },
   about:       { bo: 'ང་ཚོའི་སྐོར།', zh: '关于我们', zht: '關於我們', en: 'About' },
   home:        { bo: 'མ་ངོས།', zh: '首页', zht: '首頁', en: 'Home' },
+  dictionary:  { bo: 'ཚིག་མཛོད།', zh: '词典', zht: '詞典', en: 'Dictionary' },
+  siteName:    { bo: 'པདྨ་དཀར་པོའི་ཆོས་མཛོད།', zh: '白莲花法藏', zht: '白蓮花法藏', en: 'White Lotus Dharma Treasury' },
   saved:       { bo: 'ཉར་ཚགས།', zh: '收藏', zht: '收藏', en: 'Saved' },
   message:     { bo: 'བསམ་འཆར།', zh: '留言', zht: '留言', en: 'Message' },
   empty:       { bo: 'ཡིག་ཆ་རྗེས་སུ་འགོད་རྒྱུ།', zh: '内容即将上线', zht: '內容即將上線', en: 'Coming soon' },
@@ -100,7 +102,16 @@ const UI: Record<string, Record<Lang, string>> = {
   }
 }
 
-/** 在组件里使用：const { lang, t } = useI18n() */
+/** 取某语言的译名：繁体缺时用简体；藏文或缺译名时返回空 */
+export function pick(i18n: Partial<Record<Lang, string>> | undefined, l: Lang): string {
+  if (!i18n || l === 'bo') return ''
+  if (l === 'zht') return i18n.zht || i18n.zh || ''
+  return i18n[l] || ''
+}
+
+/** 在组件里使用：const { lang, t, name } = useI18n()
+ *  name(藏文, 译名表)：藏文界面显示藏文；其他语言显示该语言译名（没有译名就显示藏文）。
+ *  每次只显示一种文字，不混排。 */
 export function useI18n() {
   const route = useRoute()
   const { frontmatter } = useData()
@@ -113,5 +124,6 @@ export function useI18n() {
     const e = UI[key]
     return e ? e[lang.value] || e.bo : key
   }
-  return { lang, t }
+  const name = (bo: string, i18n?: Partial<Record<Lang, string>>) => pick(i18n, lang.value) || bo
+  return { lang, t, name }
 }

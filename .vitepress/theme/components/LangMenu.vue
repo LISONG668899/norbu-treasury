@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// 语言选择：地球图标 + 当前语言简称；点开是一张小卡片，每种语言用它自己的文字书写，当前项打勾。
+// 语言选择：地球图标（下方显示当前语言简称）；点开是一张小卡片，每种语言用它自己的文字书写，当前项打勾。
 // 点卡片外任意处或按 Esc 关闭。
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { LANGS, type Lang } from '../i18n'
@@ -27,7 +27,7 @@ onBeforeUnmount(() => { document.removeEventListener('click', onDoc); document.r
 <template>
   <div ref="root" class="pk-langmenu">
     <button
-      class="pk-lang"
+      class="pk-nav-btn pk-lang"
       type="button"
       :aria-label="label"
       :title="label"
@@ -35,7 +35,7 @@ onBeforeUnmount(() => { document.removeEventListener('click', onDoc); document.r
       :aria-expanded="open"
       @click="open = !open"
     >
-      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true">
         <circle cx="12" cy="12" r="9" />
         <path d="M3 12h18M12 3c2.6 2.6 2.6 15.4 0 18M12 3c-2.6 2.6-2.6 15.4 0 18" />
       </svg>

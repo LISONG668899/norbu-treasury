@@ -1,6 +1,6 @@
 ---
 layout: page
-title: གླེགས་བམ་ཀ།
+title: ཀ
 # 第三层：本函所收各篇（长条按钮）
 search: false
 catalog:

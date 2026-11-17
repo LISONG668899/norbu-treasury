@@ -1,26 +1,40 @@
 <script setup lang="ts">
-// 顶部（按示意图）：搜索框 · 色调 · 语言；下面一行：莲花标志 + 本页标题
-// 经文页（frontmatter text: true）：标题行换成“翻译”和“收藏”按钮，并记录阅读位置
+// 顶部：第一行 左边莲花标志 + 网站名，右边导航图标（含色调、语言）；第二行 搜索框独占一行；
+// 第三行 本页标题（首页不重复显示）。经文页（text: true）：标题行换成“翻译”“收藏”按钮，并记录阅读位置。
 import { computed, defineAsyncComponent, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useData, useRoute, useRouter, withBase } from 'vitepress'
 import { useI18n, loadPref, setPref, localeOf, rootPathOf, localePath, type Lang } from '../i18n'
 import { loadSaved, isSaved, toggleSaved, updatePos, getPos } from '../saved'
 import TranslateTool from './TranslateTool.vue'
-import LangMenu from './LangMenu.vue'
+import TopNav from './TopNav.vue'
+import { data as pages } from '../catalog.data.mts'
 
 const SearchBox = defineAsyncComponent(() => import('../../components/SiteSearchBox.vue'))
 
 const { isDark, frontmatter, page } = useData()
 const route = useRoute()
 const router = useRouter()
-const { lang, t } = useI18n()
+const { lang, t, name } = useI18n()
 const showSearch = ref(false)
 
 const isHome = computed(() => rootPathOf(route.path).replace(/index\.html$/, '') === '/')
 const isText = computed(() => frontmatter.value.text === true)
 const title = computed(() => String(frontmatter.value.title || page.value.title || ''))
-// 目录页标题一律藏文；收藏、留言等界面页（ui_page）标题由生成脚本换成该语言
-const isUiPage = computed(() => frontmatter.value.ui_page === true)
+// 本页标题：就用上一层目录里给这一页起的名字（按钮上写什么，标题就是什么），不加任何括号装饰。
+// 从第二层开始全部只用藏文，切换语言不改变；只有界面页（关于、收藏、词典、留言）随语言显示。
+const parentItem = computed(() => {
+  const me = rootPathOf(route.path).replace(/index\.html$/, '')
+  for (const p of Object.values(pages)) {
+    const hit = (p.items || []).find((x) => x.link === me)
+    if (hit) return hit
+  }
+  return undefined
+})
+const isUi = computed(() => frontmatter.value.ui_page === true)
+const pageTitle = computed(() => {
+  if (isUi.value) return name(String(frontmatter.value.title_bo || title.value), frontmatter.value.title_i18n)
+  return parentItem.value ? parentItem.value.title : String(frontmatter.value.title_bo || title.value)
+})
 const path = computed(() => route.path)
 const homeLink = computed(() => withBase(localePath(lang.value, '/')))
 
@@ -81,57 +95,38 @@ function onLang(v: Lang) {
 </script>
 
 <template>
-  <header class="pk-header">
-    <button class="pk-searchbox" type="button" @click="showSearch = true">
-      <span class="pk-search-label">{{ t('search') }}</span>
-      <svg class="pk-search-ic" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
-        <circle cx="10" cy="10" r="6.5" fill="none" stroke="currentColor" stroke-width="2" />
-        <path d="M15 15l6 6" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" />
-      </svg>
-    </button>
-
-    <button class="pk-tone" type="button" :title="t('tone')" @click="toggleTone">
-      <span class="pk-tone-label">{{ t('tone') }}</span>
-      <svg class="ic-sun" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
-        <circle cx="12" cy="12" r="5" fill="currentColor" />
-        <g stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
-          <path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1" />
-        </g>
-      </svg>
-      <svg class="ic-moon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
-        <path fill="currentColor" d="M20.7 14.6A8.5 8.5 0 0 1 9.4 3.3a8.5 8.5 0 1 0 11.3 11.3z" />
-      </svg>
-    </button>
-
-    <LangMenu :lang="lang" :label="t('language')" @pick="onLang" />
+  <header class="pk-top">
+    <a class="pk-brand" :href="homeLink">
+      <img :src="withBase('/logo-flower.png')" alt="" />
+      <span class="pk-brand-name">{{ t('siteName') }}</span>
+    </a>
+    <TopNav @lang="onLang" />
   </header>
 
-  <div v-if="!isText" class="pk-titlerow" :class="{ 'is-home': isHome }">
-    <a class="pk-logo" :href="homeLink" aria-label="PUNDARIKA">
-      <img :src="withBase('/logo-lotus.png')" alt="PUNDARIKA" />
-    </a>
-    <div class="pk-title">
-      <h1 class="pk-title-main" :class="{ 'is-bo': lang === 'bo' || !isUiPage }">
-        <template v-if="isHome">{{ title }}</template>
-        <template v-else-if="isUiPage && lang !== 'bo'">{{ title }}</template>
-        <template v-else>༼{{ title }}༽</template>
-      </h1>
-    </div>
+  <div class="pk-searchrow">
+    <button class="pk-searchbox" type="button" @click="showSearch = true">
+      <svg class="pk-search-ic" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+        <circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8" />
+        <path d="M15.5 15.5 21 21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+      </svg>
+      <span class="pk-search-label">{{ t('search') }}</span>
+    </button>
   </div>
 
-  <div v-else class="pk-textbar">
-    <a class="pk-logo-sm" :href="homeLink" aria-label="PUNDARIKA">
-      <img :src="withBase('/logo-lotus.png')" alt="" />
-    </a>
-    <div class="pk-textbar-ops">
-      <TranslateTool />
-      <button class="pk-save" :class="{ on: savedNow }" type="button" @click="onToggleSave">
-        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
-          <path d="M6 3h12v18l-6-4-6 4z" :fill="savedNow ? 'currentColor' : 'none'" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
-        </svg>
-        <span>{{ savedNow ? t('unsave') : t('save') }}</span>
-      </button>
-    </div>
+  <div v-if="!isText && !isHome" class="pk-pagetitle">
+    <h1 class="pk-title-main" :class="{ 'is-bo': /[\u0F00-\u0FFF]/.test(pageTitle) }">
+      {{ pageTitle }}
+    </h1>
+  </div>
+
+  <div v-if="isText" class="pk-textbar">
+    <TranslateTool />
+    <button class="pk-save" :class="{ on: savedNow }" type="button" @click="onToggleSave">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true">
+        <path d="M6.25 3.25h11.5v17.5L12 16.5l-5.75 4.25Z" :fill="savedNow ? 'currentColor' : 'none'" />
+      </svg>
+      <span>{{ savedNow ? t('unsave') : t('save') }}</span>
+    </button>
   </div>
 
   <SearchBox v-if="showSearch" @close="showSearch = false" />

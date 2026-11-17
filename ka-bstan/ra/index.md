@@ -1,6 +1,6 @@
 ---
 layout: page
-title: གླེགས་བམ་ར།
+title: ར
 # 第三层：བཀའ་དང་བསྟན་བཅོས་ཀྱི་སྐོར། 之 ར 函所收各篇。加一篇：在 items 里加 title 和 link
 search: false
 catalog:
