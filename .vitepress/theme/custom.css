@@ -6,9 +6,9 @@
                              注释  正文  目录  页标题
        藏文                  16 · 20 · 22 · 28   （藏文字面小、上下伸展大，约 ×1.25 视觉补偿）
        经文正文：藏文 22px，行高 2.0
-   【字体】一套衬线体，彼此般配：
-       藏文 Noto Serif Tibetan ｜ 简体 思源宋体 SC ｜ 繁体 思源宋体 TC ｜ 英文 EB Garamond
-       网站名、页标题、目录、经文用这套衬线体；图标下的小字、按钮、输入框用系统无衬线体（小字更清楚）
+   【字体】与竹巴噶举网站一致：
+       藏文 Noto Serif Tibetan Web（自带字体文件，所有设备一样）
+       中文、英文 Inter + 系统黑体（苹果设备“苹方”，Windows“微软雅黑”）——全站中文同一种字体
        手机：整体缩小一级（约 ×0.9）；按钮高度不小于 40px，手指好点
    【比例】阅读宽度 720px；首页目录条 460px（文字短，条子窄，两边多留白）
    【间距】只用 8 的倍数：8 / 16 / 24 / 32 / 48
@@ -35,9 +35,8 @@
 
 :root {
   /* ---- 字体 ---- */
-  --font-ui: "Noto Serif Tibetan Web", -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB",
-    "Microsoft YaHei", "Noto Sans CJK SC", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-read: "Noto Serif Tibetan Web", "EB Garamond", "Noto Serif SC", "Songti SC", "Source Han Serif SC", Georgia, serif;
+  --font-ui: "Noto Serif Tibetan Web", "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  --font-read: var(--font-ui);
   --font-bo: "Noto Serif Tibetan Web", serif;
 
   /* ---- 字号：界面（中文 / 英文） ---- */
@@ -46,7 +45,7 @@
   --t-body: 16px;     /* 输入框、提示语 */
   --t-item: 20px;     /* 目录条 */
   --t-title: 25px;    /* 页标题 */
-  --t-brand: 20px;    /* 左上角网站名 */
+  --t-brand: 28px;    /* 左上角网站名（与莲花般配） */
   --t-nav: 12px;      /* 导航图标下的小字 */
 
   /* ---- 字号：藏文 ---- */
@@ -69,8 +68,10 @@
   --pk-band: #f5d046;         /* 页眉、页脚色带：明黄 */
   --pk-band-ink: #4a4843;     /* 色带上的图标与文字 */
   --pk-gold: #b28e46;         /* 目录条细边 */
-  --pk-search: #b2bcc6;       /* 搜索框：蓝灰 */
-  --pk-search-ink: #2f3742;
+  --pk-search: rgba(178, 188, 198, .42);   /* 搜索框：淡淡透明的蓝灰 */
+  --pk-search-ink: #66717d;                /* 搜索框文字：淡一些，区别于目录的黑字 */
+  --pk-gold-ink: #8a6a2a;     /* 深赭金：悬停、选中、焦点 */
+  --pk-soft: 0 0 12px rgba(90, 70, 30, .10), 0 1px 3px rgba(90, 70, 30, .07);   /* 向四周淡淡过渡的阴影 */
   --pk-ctl: #e9e0d3;          /* 按钮、条框：纯米色 */
   --pk-border: #d6c9b5;
   --pk-ink: #1f1c19;
@@ -80,37 +81,26 @@
   --pk-shrine: #922d40;       /* 经龛线条与字母 */
   --pk-sun: #e09a00;
   --pk-shadow: 0 1px 2px rgba(60, 45, 25, .06);
-  /* 立体按钮：上沿一道亮光、下沿一道暗边、下方柔和投影；按下时下沉 1px */
-  --pk-raise: inset 0 1px 0 rgba(255, 255, 255, .7), inset 0 -2px 0 rgba(90, 65, 25, .10),
-    0 1px 1px rgba(80, 60, 25, .10), 0 3px 6px rgba(80, 60, 25, .12);
-  --pk-raise-press: inset 0 1px 0 rgba(255, 255, 255, .5), inset 0 -1px 0 rgba(90, 65, 25, .10),
-    0 1px 1px rgba(80, 60, 25, .10);
-  --pk-raise-search: inset 0 1px 0 rgba(255, 255, 255, .45), inset 0 -2px 0 rgba(30, 40, 55, .14),
-    0 1px 1px rgba(30, 40, 55, .12), 0 3px 6px rgba(30, 40, 55, .14);
-
-  --vp-c-brand-1: #8b2635;
-  --vp-c-brand-2: #a63a4a;
+  --vp-c-brand-1: #8a6a2a;
+  --vp-c-brand-2: #a07e3a;
+  --vp-c-brand-soft: rgba(178, 142, 70, .18);
   --vp-c-bg: #ffffff;
   --vp-nav-height: 0px;
-  --vp-font-family-base: var(--font-ui);
-}
-html[lang="zh-TW"] {
-  --font-ui: "Noto Serif Tibetan Web", -apple-system, BlinkMacSystemFont, "PingFang TC", "Hiragino Sans CNS",
-    "Microsoft JhengHei", "Noto Sans CJK TC", "Segoe UI", Roboto, Arial, sans-serif;
-  --font-read: "Noto Serif Tibetan Web", "EB Garamond", "Noto Serif TC", "Songti TC", "Source Han Serif TC", Georgia, serif;
 }
 /* 藏文界面：界面字号换成藏文一级 */
-html[lang="bo"] { --t-sm: var(--bo-sm); --t-ui: var(--bo-ui); --t-body: var(--bo-ui); --t-brand: 22px; --t-nav: 14px; }
-/* 英文 EB Garamond 字面略小，目录与标题放大 1px；网站名较长，略小一号 */
-html[lang="en"] { --t-brand: 19px; --t-item: 21px; --t-title: 26px; }
+html[lang="bo"] { --t-sm: var(--bo-sm); --t-ui: var(--bo-ui); --t-body: var(--bo-ui); --t-brand: 30px; --t-nav: 14px; }
+/* 网站名与莲花大小相配：莲花高 48px，中文网站名 28px，藏文 30px，英文大写 PUNDARIKA 24px（字距加宽） */
+html[lang="en"] { --t-brand: 24px; }
 
 .dark {
   --pk-bg: #1a1816;
   --pk-band: #3b3324;
   --pk-band-ink: #eadfc6;
   --pk-gold: #8a7340;
-  --pk-search: #3a424c;
-  --pk-search-ink: #d8dee5;
+  --pk-search: rgba(120, 135, 150, .22);
+  --pk-search-ink: #a9b3bd;
+  --pk-gold-ink: #d4b46a;
+  --pk-soft: 0 0 12px rgba(0, 0, 0, .40);
   --pk-ctl: #2e2a25;
   --pk-border: #48413a;
   --pk-ink: #ece6da;
@@ -120,9 +110,6 @@ html[lang="en"] { --t-brand: 19px; --t-item: 21px; --t-title: 26px; }
   --pk-shrine: #d98a98;
   --pk-sun: #f5c542;
   --pk-shadow: none;
-  --pk-raise: inset 0 1px 0 rgba(255, 255, 255, .08), inset 0 -2px 0 rgba(0, 0, 0, .35), 0 2px 6px rgba(0, 0, 0, .45);
-  --pk-raise-press: inset 0 1px 0 rgba(255, 255, 255, .06), 0 1px 2px rgba(0, 0, 0, .4);
-  --pk-raise-search: var(--pk-raise);
   --vp-c-bg: #1a1816;
 }
 
@@ -132,7 +119,7 @@ html, body { background: var(--pk-bg); color: var(--pk-ink); font-family: var(--
 .VPContent { padding-top: 0 !important; }
 
 a, button { -webkit-tap-highlight-color: transparent; }
-:focus-visible { outline: 2px solid var(--pk-brand); outline-offset: 2px; border-radius: 6px; }
+:focus-visible { outline: 2px solid var(--pk-gold-ink); outline-offset: 2px; border-radius: 6px; }
 :focus:not(:focus-visible) { outline: none; }
 /* 搜索框关掉后焦点会回到框上；iPad 会把焦点框画成上下两条红线，这里不画 */
 .pk-searchbox:focus, .pk-searchbox:focus-visible { outline: none; }
@@ -169,13 +156,14 @@ body, .pk-item, .pk-searchbox, .pk-nav-btn { transition: background-color .25s, 
 .pk-brand-name {
   font-family: var(--font-read);
   font-size: var(--t-brand);
-  line-height: 1.4;
-  letter-spacing: .06em;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: .14em;
   color: var(--pk-brand);
   white-space: nowrap;
 }
-html[lang="bo"] .pk-brand-name { letter-spacing: 0; }
-html[lang="en"] .pk-brand-name { letter-spacing: .02em; }
+html[lang="bo"] .pk-brand-name { letter-spacing: 0; font-weight: 400; }
+html[lang="en"] .pk-brand-name { letter-spacing: .16em; }
 
 .pk-nav { display: flex; align-items: center; gap: 2px; flex: none; }
 .pk-nav-btn {
@@ -251,7 +239,7 @@ html[lang="en"] .pk-brand-name { letter-spacing: .02em; }
   width: 100%;
   max-width: calc(var(--list-w) + 2 * var(--s3));   /* 与首页目录条一样宽 */
   margin: 0 auto;
-  padding: var(--s2) var(--s3) var(--s4);
+  padding: 40px var(--s3);            /* 搜索上下留白（40）大于目录间距（24），一看就分成两组 */
 }
 .pk-searchbox {
   box-sizing: border-box;
@@ -265,15 +253,14 @@ html[lang="en"] .pk-brand-name { letter-spacing: .02em; }
   border-radius: 8px;                 /* 比目录条（16px）锐一档，一眼分得出 */
   background: var(--pk-search);
   color: var(--pk-search-ink);
-  box-shadow: var(--pk-raise-search);
-  transition: transform .1s, box-shadow .1s;
+  box-shadow: var(--pk-soft);
   font-family: var(--font-ui);
   font-size: var(--t-ui);
   line-height: 1;
   cursor: pointer;
   overflow: hidden;                 /* 藏文字高较大，绝不溢出框外 */
 }
-@media (hover: hover) and (pointer: fine) { .pk-searchbox:hover { border-color: var(--pk-search-ink); } }
+@media (hover: hover) and (pointer: fine) { .pk-searchbox:hover { border-color: rgba(102, 113, 125, .45); } }
 .pk-search-ic { flex: none; }
 .pk-search-label { min-width: 0; line-height: 1.5; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
@@ -329,7 +316,8 @@ html[lang="en"] .pk-title-main:not(.is-bo) { letter-spacing: .01em; }
   line-height: 1;
   cursor: pointer;
 }
-.pk-save.on { color: var(--pk-brand); border-color: var(--pk-brand); }
+.pk-save { border-color: var(--pk-gold) !important; box-shadow: var(--pk-soft); }
+.pk-save.on { color: var(--pk-gold-ink); }
 
 /* 段落翻译 */
 .rz-text .pk-tr-btn {
@@ -339,7 +327,7 @@ html[lang="en"] .pk-title-main:not(.is-bo) { letter-spacing: .01em; }
   border: 1px solid var(--pk-border);
   border-radius: 12px;
   background: var(--pk-ctl);
-  color: var(--pk-brand);
+  color: var(--pk-ink-2);
   font-family: var(--font-ui);
   font-size: var(--t-sm);
   line-height: 22px;
@@ -350,7 +338,7 @@ html[lang="en"] .pk-title-main:not(.is-bo) { letter-spacing: .01em; }
 .rz-text .pk-tr {
   margin: calc(-1 * var(--s1)) 0 var(--s3);
   padding: 12px var(--s2);
-  border-left: 3px solid var(--pk-brand);
+  border-left: 3px solid var(--pk-gold);
   border-radius: 0 8px 8px 0;
   background: var(--pk-ctl);
   font-family: var(--font-read);
@@ -365,7 +353,7 @@ html[lang="en"] .pk-title-main:not(.is-bo) { letter-spacing: .01em; }
 
 /* ============ 目录 ============ */
 .pk-catalog { box-sizing: border-box; width: 100%; max-width: var(--page-w); margin: 0 auto; padding: 0 var(--s3); }
-.pk-list { display: flex; flex-direction: column; gap: var(--s2); }
+.pk-list { display: flex; flex-direction: column; gap: var(--s3); }
 /* 首页目录：文字短，条子窄，两边多留白 */
 .pk-catalog.is-list.is-home .pk-list { max-width: var(--list-w); margin: 0 auto; }
 .pk-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s2); }
@@ -382,12 +370,11 @@ html[lang="en"] .pk-title-main:not(.is-bo) { letter-spacing: .01em; }
   color: var(--pk-ink) !important;
   text-decoration: none !important;
   text-align: center;
-  box-shadow: var(--pk-raise);
+  box-shadow: var(--pk-soft);
   transition: border-color .2s, transform .15s;
 }
-@media (hover: hover) and (pointer: fine) { a.pk-item:hover { border-color: var(--pk-brand); transform: translateY(-1px); } }
+@media (hover: hover) and (pointer: fine) { a.pk-item:hover { border-color: var(--pk-gold-ink); } }
 .pk-item.off { opacity: .55; cursor: default; box-shadow: none; }
-a.pk-item:active, .pk-searchbox:active { transform: translateY(1px); box-shadow: var(--pk-raise-press); }
 .pk-item-name { font-family: var(--font-read); font-size: var(--t-item); line-height: 1.5; letter-spacing: .04em; overflow-wrap: anywhere; }
 html[lang="en"] .pk-item-name { letter-spacing: .01em; }
 .pk-item-name.is-bo { font-family: var(--font-bo); font-size: var(--bo-item); line-height: 1.6; letter-spacing: 0; }
@@ -433,7 +420,7 @@ html[lang="en"] .pk-item-name { letter-spacing: .01em; }
   text-align: center;
 }
 .pk-footer-icon { height: 56px; width: auto; display: inline-block; margin-bottom: var(--s1); }
-.pk-footer-text { font-family: "EB Garamond", Georgia, serif; font-size: 14px; letter-spacing: .16em; color: var(--pk-ink-3); }
+.pk-footer-text { font-family: var(--font-ui); font-size: 13px; letter-spacing: .16em; color: var(--pk-ink-3); }
 .pk-footnav {
   box-sizing: border-box;
   max-width: var(--list-w);
@@ -446,9 +433,10 @@ html[lang="en"] .pk-item-name { letter-spacing: .01em; }
 .pk-saved { max-width: var(--page-w); margin: 0 auto; padding: 0 var(--s3); box-sizing: border-box; }
 .pk-saved ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: var(--s2); }
 .pk-saved li {
-  border: 1px solid var(--pk-border);
+  border: 1px solid var(--pk-gold);
   border-radius: 16px;
   background: var(--pk-ctl);
+  box-shadow: var(--pk-soft);
   padding: var(--s2);
 }
 .pk-saved-title {
@@ -476,7 +464,7 @@ html[lang="en"] .pk-item-name { letter-spacing: .01em; }
   text-decoration: none !important;
   cursor: pointer;
 }
-@media (hover: hover) and (pointer: fine) { .pk-btn-sm:hover { border-color: var(--pk-brand); color: var(--pk-brand) !important; } }
+@media (hover: hover) and (pointer: fine) { .pk-btn-sm:hover { border-color: var(--pk-gold-ink); color: var(--pk-gold-ink) !important; } }
 
 /* ============ 留言页 ============ */
 .pk-msg { max-width: var(--page-w); margin: 0 auto; padding: 0 var(--s3); box-sizing: border-box; display: flex; flex-direction: column; gap: var(--s2); }
@@ -485,36 +473,37 @@ html[lang="en"] .pk-item-name { letter-spacing: .01em; }
   width: 100%;
   padding: 12px var(--s2);
   border: 1px solid var(--pk-border);
-  border-radius: 12px;
-  background: var(--pk-ctl);
+  border-radius: 8px;
+  background: var(--pk-bg);
   color: var(--pk-ink);
   font-family: var(--font-ui);
   font-size: var(--t-body);
   line-height: 1.7;
+  box-shadow: var(--pk-soft);
 }
 .pk-msg textarea { min-height: 180px; resize: vertical; }
 .pk-msg textarea::placeholder, .pk-msg input::placeholder { color: var(--pk-ink-3); }
-.pk-msg textarea:focus, .pk-msg input:focus { outline: none; border-color: var(--pk-brand); }
+.pk-msg textarea:focus, .pk-msg input:focus { outline: none; border-color: var(--pk-gold-ink); }
 .pk-msg .pk-trap { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
 .pk-msg button {
   align-self: center;
   min-width: 160px;
   height: var(--ctrl-h);
   margin-top: var(--s1);
-  border: 0;
-  border-radius: 22px;
-  background: var(--pk-brand);
-  color: #fff;
+  border: 1px solid var(--pk-gold);
+  border-radius: 16px;
+  background: var(--pk-ctl);
+  color: var(--pk-ink);
+  box-shadow: var(--pk-soft);
   font-family: var(--font-ui);
   font-size: var(--t-ui);
   letter-spacing: .06em;
   cursor: pointer;
 }
-.dark .pk-msg button { color: #1c1a17; }
 .pk-msg button:disabled { opacity: .6; }
 .pk-msg-ok, .pk-msg-fail { margin: 0; text-align: center; font-size: var(--t-body); }
-.pk-msg-ok { color: #2f7a3c; }
-.pk-msg-fail { color: #b03030; }
+.pk-msg-ok { color: #4f7a45; }
+.pk-msg-fail { color: #9a5a3a; }
 
 /* ============ 经文正文页 ============ */
 .rz-text { max-width: 760px; margin: 0 auto; padding: var(--s3) var(--s3) var(--s1); box-sizing: border-box; }
@@ -571,19 +560,19 @@ html[lang="en"] .pk-item-name { letter-spacing: .01em; }
 /* ============ 手机：页眉仍是 左标志+网站名 ｜ 右三个按钮；网站名太长时自动折成两行 ============ */
 @media (max-width: 640px) {
   :root {
-    --t-item: 18px; --t-title: 22px; --t-brand: 18px;
+    --t-item: 18px; --t-title: 22px; --t-brand: 24px;
     --bo-item: 20px; --bo-title: 24px; --bo-read: 20px; --bo-ui: 18px;
     --ctrl-h: 44px;
     --brand-h: 40px;
   }
-  html[lang="bo"] { --t-brand: 20px; }
-  html[lang="en"] { --t-brand: 17px; --t-item: 19px; --t-title: 23px; }
+  html[lang="bo"] { --t-brand: 26px; }
+  html[lang="en"] { --t-brand: 20px; }
   .pk-top { padding: 8px 12px 8px var(--s2); gap: var(--s1); }
   .pk-brand { gap: 8px; }
-  .pk-brand-name { white-space: normal; line-height: 1.25; }
   .pk-nav-btn { min-width: 48px; height: 52px; padding: 4px 2px 2px; }
   .pk-nav-btn svg { width: 22px; height: 22px; }
-  .pk-searchrow { padding: var(--s2) var(--s2) var(--s3); }
+  .pk-searchrow { padding: 32px var(--s2); }
+  .pk-list { gap: 20px; }
   .pk-pagetitle { padding: 0 var(--s2) var(--s2); }
   .pk-textbar { padding: 0 var(--s2); }
   .pk-save { height: 36px; padding: 0 12px; }

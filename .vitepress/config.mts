@@ -150,17 +150,11 @@ export default withPwa(defineConfig({
     },
     workbox: {
       globPatterns: ['**/*.{js,css,html,woff2,png,svg,ico}'],
-      globIgnores: ['media/**', '**/noto-serif-*', '**/eb-garamond-*'],   // 字体小块不预先下载，用到时再缓存
+      globIgnores: ['media/**'],
       maximumFileSizeToCacheInBytes: 6 * 1024 * 1024,
       cleanupOutdatedCaches: true,
       // 浏览过的 R2 缩略图可以缓存少量（最多 300 张、30 天），原图不缓存
       runtimeCaching: [
-        {
-          // 中文、英文字体小块：用到时缓存，以后离线也能显示
-          urlPattern: /\/assets\/(noto-serif|eb-garamond)-.*\.woff2?$/,
-          handler: 'CacheFirst',
-          options: { cacheName: 'fonts', expiration: { maxEntries: 400, maxAgeSeconds: 365 * 24 * 3600 } }
-        },
         ...(MEDIA_BASE
         ? [
             {

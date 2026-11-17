@@ -6,14 +6,7 @@ import Catalog from './components/Catalog.vue'
 import SavedList from './components/SavedList.vue'
 import MessageForm from './components/MessageForm.vue'
 import MediaImage from './components/MediaImage.vue'
-// 字体：藏文 Noto Serif Tibetan（自带，见 custom.css）；中文 思源宋体（简 / 繁）；英文 EB Garamond。
-// 中文字体按字切成上百个小块，浏览器只下载页面上用到的字，很快。
-import '@fontsource/noto-serif-sc/400.css'
-import '@fontsource/noto-serif-sc/500.css'
-import '@fontsource/noto-serif-tc/400.css'
-import '@fontsource/noto-serif-tc/500.css'
-import '@fontsource/eb-garamond/400.css'
-import '@fontsource/eb-garamond/500.css'
+// 字体：藏文用自带的 Noto Serif Tibetan Web；中文、英文与竹巴噶举网站相同（Inter + 系统黑体：苹方 / 微软雅黑），见 custom.css
 import './custom.css'
 
 export default {
