@@ -92,10 +92,14 @@ const UI: Record<string, Record<Lang, string>> = {
   savedTexts:  { bo: 'ཉར་ཚགས་བྱས་པའི་དཔེ་ཆ།', zh: '收藏的经典', zht: '收藏的經典', en: 'Saved texts' },
   savedNone:   { bo: 'ད་དུང་ཉར་ཚགས་བྱས་པ་མེད།', zh: '还没有收藏的经典', zht: '還沒有收藏的經典', en: 'Nothing saved yet' },
   savedNote:   {
-    bo: 'ཉར་ཚགས་འདི་ཁྱེད་ཀྱི་བརྡ་འཕྲིན་ཡོ་བྱད་འདིའི་ནང་ཁོ་ནར་ཉར་ཡོད།',
-    zh: '收藏只保存在您这台设备的浏览器里，本站不收集任何读者信息。', zht: '收藏只保存在您這台裝置的瀏覽器裡，本站不收集任何讀者資訊。',
-    en: 'Saved items stay in this browser on this device only. We collect no reader data.'
+    bo: 'ཉར་ཚགས་འདི་ཁྱེད་ཀྱི་བརྡ་འཕྲིན་ཡོ་བྱད་འདིའི་ནང་ཁོ་ནར་ཉར་ཡོད། ང་ཚོས་ཀློག་པ་པོའི་ཆ་འཕྲིན་གང་ཡང་མི་སྡུད། མ་བརླག་པའི་ཆེད་དུ་ཕྱིར་འདྲེན་བྱེད་རོགས།',
+    zh: '收藏只保存在您这台设备的浏览器里，本站不收集任何读者信息。换设备或清除浏览器数据后收藏会消失，请记得导出留存。', zht: '收藏只保存在您這台裝置的瀏覽器裡，本站不收集任何讀者資訊。換裝置或清除瀏覽器資料後收藏會消失，請記得導出留存。',
+    en: 'Saved items stay in this browser on this device only. We collect no reader data. They are lost if you switch devices or clear browser data, so export a copy to keep.'
   },
+  exportAll:   { bo: 'ཕྱིར་འདྲེན།', zh: '导出全部', zht: '導出全部', en: 'Export all' },
+  expPdf:      { bo: 'པར་འདེབས་སམ་ PDF', zh: '打印或存为 PDF', zht: '列印或存為 PDF', en: 'Print or save as PDF' },
+  expWord:     { bo: 'Word ཡིག་ཆ་ཕབ་ལེན།', zh: '下载 Word 文档', zht: '下載 Word 文檔', en: 'Download Word document' },
+  expTxt:      { bo: 'ཡིག་རྐྱང་ཕབ་ལེན།', zh: '下载纯文本', zht: '下載純文本', en: 'Download plain text' },
   resume:      { bo: 'མུ་མཐུད་དུ་ཀློག', zh: '继续阅读', zht: '繼續閱讀', en: 'Continue reading' },
   remove:      { bo: 'ཕྱིར་འདོན།', zh: '移除', zht: '移除', en: 'Remove' },
   msgTitle:    { bo: 'དོ་དམ་པར་བསམ་འཆར་འབུལ་བ།', zh: '给管理员留言', zht: '給管理員留言', en: 'Message the editors' },
