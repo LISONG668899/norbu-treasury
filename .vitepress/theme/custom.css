@@ -438,6 +438,80 @@ html[lang="en"] .pk-title-main:not(.is-bo) { letter-spacing: .01em; }
 .rz-text .pk-tr-note { display: block; margin-top: 6px; font-family: var(--font-ui); font-size: var(--t-sm); color: var(--pk-ink-3); }
 
 
+/* ============ 选段机器翻译 ============ */
+/* 选区下方的小按钮：米色、赭金边，与目录条同一家族 */
+.pk-mt-btn {
+  position: absolute;
+  z-index: 70;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 36px;
+  padding: 0 14px;
+  border: 1px solid var(--pk-gold);
+  border-radius: 18px;
+  background: var(--pk-ctl);
+  color: var(--pk-ink);
+  font-family: var(--font-ui);
+  font-size: 14px;
+  white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(90, 70, 30, .18);
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+}
+/* 译文卡片：固定在屏幕下方（手机在底部黄条之上） */
+.pk-mt-card {
+  position: fixed;
+  z-index: 80;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  box-sizing: border-box;
+  width: min(680px, calc(100vw - 32px));
+  max-height: min(60vh, 520px);
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--pk-gold);
+  border-radius: 14px;
+  background: var(--pk-bg);
+  box-shadow: 0 10px 36px rgba(60, 45, 20, .22);
+  overflow: hidden;
+}
+.pk-mt-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 8px 8px 16px;
+  background: var(--pk-ctl);
+  border-bottom: 1px solid rgba(178, 142, 70, .35);
+}
+.pk-mt-label { font-family: var(--font-ui); font-size: 14px; color: var(--pk-ink-2); letter-spacing: .04em; }
+.pk-mt-x { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border: 0; border-radius: 6px; background: transparent; color: var(--pk-ink-2); cursor: pointer; }
+.pk-mt-body { padding: 12px 16px; overflow-y: auto; overscroll-behavior: contain; }
+.pk-mt-src {
+  margin: 0 0 10px;
+  font-family: var(--font-bo); font-size: 16px; line-height: 1.8; color: var(--pk-ink-3);
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+}
+.pk-mt-out { margin: 0; font-family: var(--font-ui); font-size: 17px; line-height: 1.85; color: var(--pk-ink); white-space: pre-wrap; text-align: justify; }
+.pk-mt-out:lang(en) { text-align: left; }
+.pk-mt-status { margin: 0; font-family: var(--font-ui); font-size: 15px; color: var(--pk-ink-3); }
+.pk-mt-status.err { color: #9a5a3a; }
+.pk-mt-foot {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px;
+  padding: 8px 12px 10px 16px;
+  border-top: 1px solid rgba(178, 142, 70, .25);
+}
+.pk-mt-note { font-family: var(--font-ui); font-size: 12px; color: var(--pk-ink-3); }
+.pk-mt-ops { display: flex; gap: 8px; }
+.pk-mt-save { display: inline-flex; align-items: center; gap: 4px; }
+.pk-mt-save.on { color: var(--pk-gold-ink) !important; border-color: var(--pk-gold-ink); }
+
+/* 收藏页：译文 */
+.pk-saved-h { margin: var(--s4) 0 var(--s2); padding: 0; border: 0; font-family: var(--font-ui); font-size: 18px; font-weight: 500; color: var(--pk-ink-2); text-align: center; }
+.pk-saved-src { margin: 8px 0 4px; font-family: var(--font-bo); font-size: 16px; line-height: 1.8; color: var(--pk-ink-3); }
+.pk-saved-out { margin: 0 0 8px; font-family: var(--font-ui); font-size: 16px; line-height: 1.8; color: var(--pk-ink); white-space: pre-wrap; }
+
 /* ============ 目录 ============ */
 .pk-catalog { box-sizing: border-box; width: 100%; max-width: var(--page-w); margin: 0 auto; padding: 0 var(--s3); }
 .pk-list { display: flex; flex-direction: column; gap: var(--s3); }
@@ -664,6 +738,7 @@ html[lang="en"] .pk-item-name { letter-spacing: .01em; }
   .pk-footer { padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px)); }   /* 给固定的底条让出位置 */
   /* 搜索框和黄条一起固定（.pk-sticky），不随内容滑动；固定区不宜太高，首页目录另外下移拉开距离 */
   .pk-catalog.is-home { margin-top: var(--s3); }
+  .pk-mt-card { bottom: calc(84px + env(safe-area-inset-bottom, 0px)); max-height: 55vh; }
   .pk-search-panel { max-height: calc(100dvh - 260px); }
   .pk-top { padding: 8px 12px 8px var(--s2); gap: var(--s1); }
   .pk-brand { gap: 8px; }

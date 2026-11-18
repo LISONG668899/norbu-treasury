@@ -58,6 +58,8 @@ const decode = (s) =>
     .replace(/&amp;/g, '&')
     .trim()
 
+export { decode as decodeHtml }
+
 /** 与网页端顺序一致：.rz-text 里的 p.bo 与 p.bo-verse，按出现先后 */
 export function extractParagraphs(html) {
   const out = []

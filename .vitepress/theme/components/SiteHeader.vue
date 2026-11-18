@@ -5,7 +5,7 @@ import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useData, useRoute, useRouter, withBase } from 'vitepress'
 import { useI18n, loadPref, setPref, localeOf, rootPathOf, localePath, type Lang } from '../i18n'
 import { loadSaved, isSaved, toggleSaved, updatePos, getPos } from '../saved'
-import TranslateTool from './TranslateTool.vue'
+import SelectTranslate from './SelectTranslate.vue'
 import TopNav from './TopNav.vue'
 import { data as pages } from '../catalog.data.mts'
 
@@ -119,7 +119,7 @@ function onLang(v: Lang) {
   </div>
 
   <div v-if="isText" class="pk-textbar">
-    <TranslateTool />
+    <SelectTranslate :title="pageTitle" />
     <button class="pk-save" :class="{ on: savedNow }" type="button" @click="onToggleSave">
       <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true">
         <path d="M6.25 3.25h11.5v17.5L12 16.5l-5.75 4.25Z" :fill="savedNow ? 'currentColor' : 'none'" />

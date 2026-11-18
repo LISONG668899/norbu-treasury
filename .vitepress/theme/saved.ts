@@ -57,3 +57,50 @@ export function updatePos(path: string, pos: number) {
 export function getPos(path: string) {
   return saved.value.find((s) => s.path === path)?.pos || 0
 }
+
+// ============================================================
+// 收藏的译文（选段机器翻译的结果），同样只存在本机浏览器
+// 每条：{ id, path, title, source, text, lang, savedAt }
+// ============================================================
+export interface SavedTr {
+  id: string
+  path: string
+  title: string
+  source: string
+  text: string
+  lang: string
+  savedAt: number
+}
+
+const TR_KEY = 'pk-saved-tr'
+export const savedTr = ref<SavedTr[]>([])
+
+export function loadSavedTr() {
+  try {
+    const raw = localStorage.getItem(TR_KEY)
+    savedTr.value = raw ? JSON.parse(raw) : []
+  } catch {
+    savedTr.value = []
+  }
+}
+
+function persistTr() {
+  try { localStorage.setItem(TR_KEY, JSON.stringify(savedTr.value)) } catch {}
+}
+
+export const trId = (path: string, source: string, lang: string) => `${lang}|${path}|${source}`
+
+export function isTrSaved(id: string) {
+  return savedTr.value.some((s) => s.id === id)
+}
+
+export function toggleTr(item: Omit<SavedTr, 'savedAt'>) {
+  if (isTrSaved(item.id)) savedTr.value = savedTr.value.filter((s) => s.id !== item.id)
+  else savedTr.value = [{ ...item, savedAt: Date.now() }, ...savedTr.value]
+  persistTr()
+}
+
+export function removeTr(id: string) {
+  savedTr.value = savedTr.value.filter((s) => s.id !== id)
+  persistTr()
+}
