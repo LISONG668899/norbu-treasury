@@ -42,7 +42,10 @@ const link = (p: string) => withBase(localePath(lang.value, p))
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <!-- 留言图标：圆形对话气泡（管理员提供，2026-11-18） -->
           <path d="M21 10.75c0 4.28-4.03 7.75-9 7.75a10.4 10.4 0 0 1-3.1-.46L5 21l.35-4.85A7.2 7.2 0 0 1 3 10.75C3 6.47 7.03 3 12 3s9 3.47 9 7.75Z" />
-          <path d="M8.5 10.75h.01M12 10.75h.01M15.5 10.75h.01" />
+          <!-- 三个实心圆点：填充色随旁边按钮（currentColor） -->
+          <circle cx="8.5" cy="10.75" r="1" fill="currentColor" stroke="none" />
+          <circle cx="12" cy="10.75" r="1" fill="currentColor" stroke="none" />
+          <circle cx="15.5" cy="10.75" r="1" fill="currentColor" stroke="none" />
         </svg>
         <span>{{ t('message') }}</span>
       </a>
