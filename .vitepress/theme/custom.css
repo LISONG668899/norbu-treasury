@@ -70,6 +70,11 @@
   --pk-gold: #b28e46;         /* 目录条细边 */
   --pk-search: rgba(178, 188, 198, .42);   /* 搜索框：淡淡透明的蓝灰 */
   --pk-search-ink: #66717d;                /* 搜索框文字：淡一些，区别于目录的黑字 */
+  --pk-search-ph: #9aa3ad;                 /* 搜索框默认提示字：再淡一档 */
+  --pk-search-btn: rgba(62, 72, 84, .50);  /* 搜索按钮：深灰、半透明 */
+  --pk-search-btn-h: rgba(62, 72, 84, .64);
+  --pk-edge: rgba(178, 142, 70, .38);      /* 目录条边线：淡金、半透明，看起来更细更柔 */
+  --pk-brand-halo: 0 0 1px rgba(255, 255, 255, .95), 0 0 3px rgba(255, 255, 255, .75), 0 0 7px rgba(255, 255, 255, .45);   /* 网站名淡淡白边，与白莲相配 */
   --pk-gold-ink: #8a6a2a;     /* 深赭金：悬停、选中、焦点 */
   --pk-soft: 0 0 12px rgba(90, 70, 30, .10), 0 1px 3px rgba(90, 70, 30, .07);   /* 向四周淡淡过渡的阴影 */
   --pk-ctl: #e9e0d3;          /* 按钮、条框：纯米色 */
@@ -102,6 +107,11 @@ html[lang="bo"] { --t-sm: var(--bo-sm); --t-ui: var(--bo-ui); --t-body: var(--bo
   --pk-gold: #8a7340;
   --pk-search: rgba(120, 135, 150, .22);
   --pk-search-ink: #a9b3bd;
+  --pk-search-ph: #78838e;
+  --pk-search-btn: rgba(150, 165, 180, .28);
+  --pk-search-btn-h: rgba(150, 165, 180, .40);
+  --pk-edge: rgba(138, 115, 64, .50);
+  --pk-brand-halo: 0 0 4px rgba(255, 255, 255, .14);
   --pk-gold-ink: #d4b46a;
   --pk-soft: 0 0 12px rgba(0, 0, 0, .40);
   --pk-ctl: #2e2a25;
@@ -168,6 +178,7 @@ body, .pk-item, .pk-searchbox, .pk-nav-btn { transition: background-color .25s, 
   line-height: 1.3;
   letter-spacing: .14em;
   color: var(--pk-brand);
+  text-shadow: var(--pk-brand-halo);
   white-space: nowrap;
 }
 .ui-bo .pk-brand-name { letter-spacing: 0; font-weight: 400; }
@@ -270,7 +281,7 @@ body, .pk-item, .pk-searchbox, .pk-nav-btn { transition: background-color .25s, 
 }
 @media (hover: hover) and (pointer: fine) {
   .pk-searchbox:hover { border-color: rgba(102, 113, 125, .5); }
-  .pk-search-go:hover { background: #7a8795; }
+  .pk-search-go:hover { background: var(--pk-search-btn-h); }
   .pk-search-hit:hover { background: var(--pk-ctl); }
 }
 .pk-search-ic { flex: none; }
@@ -292,7 +303,7 @@ body, .pk-item, .pk-searchbox, .pk-nav-btn { transition: background-color .25s, 
 .dark .pk-search-input { color: #d3dae1; }
 /* 藏文：字形下伸较长，单独下移、放宽行高，看起来才居中且不切掉下加字 */
 .pk-search-input.is-bo { height: auto; line-height: 2; padding: 7px 0 0; }
-.pk-search-input::placeholder { color: var(--pk-search-ink); opacity: 1; }
+.pk-search-input::placeholder { color: var(--pk-search-ph); opacity: 1; }
 .pk-search-input::-webkit-search-cancel-button { display: none; }
 .pk-search-clear {
   flex: none; display: flex; align-items: center; justify-content: center;
@@ -306,18 +317,18 @@ body, .pk-item, .pk-searchbox, .pk-nav-btn { transition: background-color .25s, 
   padding: 0 16px;
   border: 0;
   border-radius: 6px;
-  background: #8794a2;
+  background: var(--pk-search-btn);
   color: #fff;
   font-family: var(--font-ui);
   font-size: var(--t-ui);
   line-height: 1;
   letter-spacing: .04em;
   cursor: pointer;
-  box-shadow: 0 1px 2px rgba(30, 40, 55, .15);
+  box-shadow: none;
 }
 .pk-search-go.is-bo { padding-top: 5px; font-size: 18px; }
-.pk-search-go:active { background: #75828f; }
-.dark .pk-search-go { background: #55616e; color: #e6ebf0; }
+.pk-search-go:active { background: var(--pk-search-btn-h); }
+.dark .pk-search-go { color: #e6ebf0; }
 
 /* 搜索结果：在搜索框正下方展开 */
 .pk-search-panel {
@@ -525,7 +536,7 @@ html[lang="en"] .pk-title-main:not(.is-bo) { letter-spacing: .01em; }
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--pk-gold);
+  border: 1px solid var(--pk-edge);
   border-radius: 16px;
   background: var(--pk-ctl);
   color: var(--pk-ink) !important;
@@ -594,7 +605,7 @@ html[lang="en"] .pk-item-name { letter-spacing: .01em; }
 .pk-saved { max-width: var(--page-w); margin: 0 auto; padding: 0 var(--s3); box-sizing: border-box; }
 .pk-saved ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: var(--s2); }
 .pk-saved li {
-  border: 1px solid var(--pk-gold);
+  border: 1px solid var(--pk-edge);
   border-radius: 16px;
   background: var(--pk-ctl);
   box-shadow: var(--pk-soft);
@@ -651,7 +662,7 @@ html[lang="en"] .pk-item-name { letter-spacing: .01em; }
   min-width: 160px;
   height: var(--ctrl-h);
   margin-top: var(--s1);
-  border: 1px solid var(--pk-gold);
+  border: 1px solid var(--pk-edge);
   border-radius: 16px;
   background: var(--pk-ctl);
   color: var(--pk-ink);
