@@ -571,7 +571,7 @@ html[lang="en"] .pk-item-name { letter-spacing: .01em; }
 @media (hover: hover) and (pointer: fine) { a.pk-shrine:hover { transform: translateY(-2px); } }
 
 .pk-empty { margin: var(--s6) 0; text-align: center; font-family: var(--font-ui); font-size: var(--t-body); color: var(--pk-ink-3); }
-.pk-note { margin: var(--s3) 0 0; text-align: center; font-family: var(--font-ui); font-size: var(--t-sm); line-height: 1.7; color: var(--pk-ink-3); }
+.pk-note { margin: var(--s3) 0 0; white-space: pre-line; text-align: center; font-family: var(--font-ui); font-size: var(--t-sm); line-height: 1.7; color: var(--pk-ink-3); }
 
 /* ============ 页脚：金刚杵 + 版权，下面是明黄色带里的四个按钮 ============ */
 .pk-footer {
@@ -627,6 +627,20 @@ html[lang="en"] .pk-item-name { letter-spacing: .01em; }
 }
 @media (hover: hover) and (pointer: fine) { .pk-btn-sm:hover { border-color: var(--pk-gold-ink); color: var(--pk-gold-ink) !important; } }
 
+/* 收藏页最上面的使用说明：一段话，米色浅底，左对齐 */
+.pk-how {
+  margin: 0 0 var(--s3);
+  padding: var(--s2) var(--s2);
+  border-radius: 14px;
+  background: var(--pk-ctl);
+  font-family: var(--font-ui);
+  font-size: var(--t-sm);
+  line-height: 1.8;
+  color: var(--pk-ink-2);
+  text-align: justify;
+}
+.ui-bo .pk-how, :lang(bo) .pk-how { font-family: var(--font-bo); font-size: 16px; line-height: 2; }
+
 /* ---------- 收藏页“导出全部”：米色按钮 + 金边，菜单与目录条同一配色 ---------- */
 .pk-export-bar { display: flex; justify-content: flex-end; margin: 0 0 var(--s2); }
 .pk-export { position: relative; }
@@ -653,7 +667,7 @@ html[lang="en"] .pk-item-name { letter-spacing: .01em; }
   body * { visibility: hidden !important; }
   .pk-saved, .pk-saved * { visibility: visible !important; }
   .pk-saved { position: absolute; left: 0; top: 0; width: 100%; }
-  .pk-export-bar, .pk-saved-ops .pk-btn-sm { display: none !important; }
+  .pk-export-bar, .pk-how, .pk-saved-ops .pk-btn-sm { display: none !important; }
   .pk-saved li { box-shadow: none; break-inside: avoid; }
 }
 

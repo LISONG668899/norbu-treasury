@@ -83,6 +83,7 @@ onBeforeUnmount(() => document.removeEventListener('click', onDocClick))
 
 <template>
   <div class="pk-saved">
+    <p class="pk-how">{{ t('savedHow') }}</p>
     <p v-if="!saved.length && !savedTr.length" class="pk-empty">{{ t('savedNone') }}</p>
 
     <div v-else class="pk-export-bar">

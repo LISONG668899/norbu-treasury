@@ -96,6 +96,12 @@ const UI: Record<string, Record<Lang, string>> = {
     zh: '收藏只保存在您这台设备的浏览器里，本站不收集任何读者信息。换设备或清除浏览器数据后收藏会消失，请记得导出留存。', zht: '收藏只保存在您這台裝置的瀏覽器裡，本站不收集任何讀者資訊。換裝置或清除瀏覽器資料後收藏會消失，請記得導出留存。',
     en: 'Saved items stay in this browser on this device only. We collect no reader data. They are lost if you switch devices or clear browser data, so export a copy to keep.'
   },
+  savedHow:    {
+    bo: 'དཔེ་ཆ་ཀློག་སྐབས་ལག་མཛུབ་བམ་ཙི་གུས་ཚིག་ཚན་ཞིག་བདམས་ན་“འཕྲུལ་ཆས་ཡིག་སྒྱུར།”ཞེས་པའི་མཐེབ་གནོན་ཞིག་ཐོན་ཡོང་། ཡིག་སྒྱུར་ཐོན་རྗེས་“ཡིག་སྒྱུར་ཉར་ཚགས།”ལ་མནན་ན། ཚིག་ཚན་དེ་དང་ཡིག་སྒྱུར་གཉིས་ཀ་འདིར་ཉར་ཚགས་བྱེད་ཐུབ། དཔེ་ཆའི་ཤོག་ངོས་སྟེང་གི་“ཉར་ཚགས་སུ་འཇུག”ལ་མནན་ན་དཔེ་ཆ་ཧྲིལ་པོ་ཉར་ཚགས་བྱེད་ཐུབ་ཅིང་། གང་དུ་བཀླགས་པའང་དྲན་པར་འཛིན།',
+    zh: '阅读经文时，用手指或鼠标选中一段藏文，会出现“机器翻译”按钮；译文出来后点“收藏译文”，这一段原文和译文就会一起收进这里。在经文页面点“收藏”，可以收藏整部经典，还会记住您读到哪里，下次点“继续阅读”就能接着读。',
+    zht: '閱讀經文時，用手指或滑鼠選中一段藏文，會出現“機器翻譯”按鈕；譯文出來後點“收藏譯文”，這一段原文和譯文就會一起收進這裡。在經文頁面點“收藏”，可以收藏整部經典，還會記住您讀到哪裡，下次點“繼續閱讀”就能接著讀。',
+    en: 'While reading, select a passage of Tibetan with your finger or mouse and a “Machine translation” button appears; once the translation shows, tap “Save translation” and the passage and its translation are kept here together. Tap “Save” on a text page to keep the whole text — it also remembers where you stopped, so “Continue reading” takes you back there.'
+  },
   exportAll:   { bo: 'ཕྱིར་འདྲེན།', zh: '导出全部', zht: '導出全部', en: 'Export all' },
   expPdf:      { bo: 'པར་འདེབས་སམ་ PDF', zh: '打印或存为 PDF', zht: '列印或存為 PDF', en: 'Print or save as PDF' },
   expWord:     { bo: 'Word ཡིག་ཆ་ཕབ་ལེན།', zh: '下载 Word 文档', zht: '下載 Word 文檔', en: 'Download Word document' },
@@ -114,9 +120,9 @@ const UI: Record<string, Record<Lang, string>> = {
   msgOk:       { bo: 'བསམ་འཆར་འབྱོར་སོང་། ཐུགས་རྗེ་ཆེ།', zh: '已收到，谢谢！', zht: '已收到，謝謝！', en: 'Received — thank you!' },
   msgFail:     { bo: 'འབུལ་མ་ཐུབ། ཡང་བསྐྱར་ཚོད་ལྟ་གནང་རོགས།', zh: '发送失败，请稍后再试', zht: '發送失敗，請稍後再試', en: 'Could not send. Please try again later.' },
   msgNote:     {
-    bo: 'ང་ཚོས་ཁྱེད་ཀྱི་མིང་དང་ IP སོགས་ཉར་ཚགས་མི་བྱེད།',
-    zh: '本站不记录您的姓名、IP 等任何个人信息；只有您自愿填写的联系方式会随留言保存。', zht: '本站不記錄您的姓名、IP 等任何個人資訊；只有您自願填寫的聯絡方式會隨留言保存。',
-    en: 'We do not record your name, IP address or any other personal data — only what you choose to write.'
+    bo: 'ང་ཚོས་ཁྱེད་ཀྱི་མིང་དང་ IP སོགས་ཉར་ཚགས་མི་བྱེད།\nཁྱེད་ཀྱིས་རང་མོས་ཀྱིས་བྲིས་པའི་འབྲེལ་གཏུག་བྱ་ཐབས་ཙམ་བསམ་འཆར་དང་མཉམ་དུ་ཉར།',
+    zh: '本站不记录您的姓名、IP 等任何个人信息\n只有您自愿填写的联系方式会随留言保存', zht: '本站不記錄您的姓名、IP 等任何個人資訊\n只有您自願填寫的聯絡方式會隨留言保存',
+    en: 'We do not record your name, IP address or any other personal data\nOnly the contact details you choose to give are kept with your message'
   }
 }
 
