@@ -40,9 +40,9 @@ const link = (p: string) => withBase(localePath(lang.value, p))
       </a>
       <a class="pk-nav-btn" :class="{ on: on('/message') }" :href="link('/message/')">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <!-- 留言图标：对话框（管理员提供，2026-11-18） -->
-          <path d="M6 4.25h12a2.75 2.75 0 0 1 2.75 2.75v8A2.75 2.75 0 0 1 18 17.75H8l-4.75 3V7A2.75 2.75 0 0 1 6 4.25Z" />
-          <path d="M7.75 9h8.5M7.75 13h5.5" />
+          <!-- 留言图标：圆形对话气泡（管理员提供，2026-11-18） -->
+          <path d="M21 10.75c0 4.28-4.03 7.75-9 7.75a10.4 10.4 0 0 1-3.1-.46L5 21l.35-4.85A7.2 7.2 0 0 1 3 10.75C3 6.47 7.03 3 12 3s9 3.47 9 7.75Z" />
+          <path d="M8.5 10.75h.01M12 10.75h.01M15.5 10.75h.01" />
         </svg>
         <span>{{ t('message') }}</span>
       </a>
