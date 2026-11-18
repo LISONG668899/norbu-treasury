@@ -40,7 +40,11 @@ const link = (p: string) => withBase(localePath(lang.value, p))
       </a>
       <a class="pk-nav-btn" :class="{ on: on('/message') }" :href="link('/message/')">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="m8 15 2-7 6.25-4.5 4.25 4.25L16 14l-8 1Zm0 0 5.25-5.25M10 8l6 6M3.5 20c2.3-2.3 4.4-2.6 6.2-1.4s3.1 1.55 5.2.6c1.55-.7 3.3-.9 5.6-.45" />
+          <!-- 留言图标：笔尖与手写线（管理员提供，2026-11-18） -->
+          <path d="m13.75 3 3.7 2.35-1.2 1.9-3.7-2.35ZM12.55 4.9l-3.7 4.85-1.35 6.2 5.4-3.7 3.35-5" />
+          <circle cx="11.65" cy="9.65" r="1.1" />
+          <path d="m7.5 15.95 3.55-5.38" />
+          <path d="M3.5 20c2.3-2.3 4.4-2.6 6.2-1.4s3.1 1.55 5.2.6c1.55-.7 3.3-.9 5.6-.45" />
         </svg>
         <span>{{ t('message') }}</span>
       </a>
