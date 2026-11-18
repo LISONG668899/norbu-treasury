@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // 选段机器翻译：在经文里选中任意文字（电脑用鼠标拖选，手机长按后拖动），
-// 选区下方出现“机器翻译”小按钮 → 点一下，下方弹出译文卡片 → 可“收藏译文”“复制”。
+// 选区下方出现“机器翻译”小按钮 → 点一下，选区自动扩到前后完整的句子，下方弹出译文卡片 → 可“收藏译文”“复制”。
 // 收藏的译文存在本机浏览器，在“收藏”页里查看。
 // 后端：functions/api/translate-text.js（Dharmamitra / MITRA 引擎，免费、无需密钥）
 import { onBeforeUnmount, onMounted, ref, computed, watch } from 'vue'
@@ -28,6 +28,59 @@ const cardLang = ref('zh')
 const id = computed(() => trId(rootPathOf(route.path), source.value, cardLang.value))
 const saved = computed(() => status.value === 'ok' && isTrSaved(id.value))
 
+// ---------- 自动扩展到完整句子 ----------
+// 藏文以 ཤད“།”（及 ༎ ༑ ༔ 等）断句：选区开头往前退到上一个“།”之后，结尾往后进到下一个“།”为止。
+// 这样不同读者选同一句，送出的文字完全相同，服务器上存的译文就能共享。
+const SHAD = /[\u0F0D-\u0F12\u0F14]/
+const BLOCK = 'p, h1, h2, h3, h4, li, blockquote'
+let pickedRange: Range | null = null
+
+function blockOf(node: Node, root: Element) {
+  const el = (node.nodeType === 1 ? node : node.parentElement) as Element | null
+  const b = el?.closest(BLOCK)
+  return b && root.contains(b) ? b : null
+}
+function offsetIn(block: Element, node: Node, off: number) {
+  const r = document.createRange()
+  r.setStart(block, 0)
+  r.setEnd(node, off)
+  return r.toString().length
+}
+function pointAt(block: Element, offset: number): [Node, number] {
+  const w = document.createTreeWalker(block, NodeFilter.SHOW_TEXT)
+  let n: Node | null
+  let left = offset
+  let last: Node | null = null
+  while ((n = w.nextNode())) {
+    const len = (n as Text).data.length
+    if (left <= len) return [n, left]
+    left -= len
+    last = n
+  }
+  return last ? [last, (last as Text).data.length] : [block, 0]
+}
+function expand(range: Range, root: Element): Range {
+  const sb = blockOf(range.startContainer, root)
+  const eb = blockOf(range.endContainer, root)
+  if (!sb || !eb) return range
+  const st = sb.textContent || ''
+  const et = eb.textContent || ''
+  let i = offsetIn(sb, range.startContainer, range.startOffset)
+  while (i > 0 && !SHAD.test(st[i - 1])) i--
+  while (i < st.length && (SHAD.test(st[i]) || /\s/.test(st[i]))) i++   // 跳过句首的“།”和空格
+  let j = offsetIn(eb, range.endContainer, range.endOffset)
+  if (!(j > 0 && SHAD.test(et[j - 1]))) {
+    while (j < et.length && !SHAD.test(et[j])) j++
+  }
+  while (j < et.length && SHAD.test(et[j])) j++                            // 带上句末的“།”
+  const r = document.createRange()
+  const [sn, so] = pointAt(sb, i)
+  const [en, eo] = pointAt(eb, j)
+  r.setStart(sn, so)
+  r.setEnd(en, eo)
+  return r.collapsed ? range : r
+}
+
 let timer: ReturnType<typeof setTimeout> | undefined
 function check() {
   const sel = window.getSelection()
@@ -37,6 +90,7 @@ function check() {
   if (!root.contains(range.commonAncestorContainer)) { btn.value = null; return }
   const text = sel.toString().replace(/\s+/g, ' ').trim()
   if (text.length < 2 || !/[ༀ-࿿]/.test(text)) { btn.value = null; return }
+  if (card.value && text === source.value) { btn.value = null; return }   // 正在显示的就是这一句（已扩成整句）
   const rects = range.getClientRects()
   const r = rects.length ? rects[rects.length - 1] : range.getBoundingClientRect()
   const half = 90
@@ -45,12 +99,22 @@ function check() {
     left: Math.min(Math.max(r.left + r.width / 2 + window.scrollX, half + 8), window.innerWidth - half - 8)
   }
   picked = text
+  pickedRange = range.cloneRange()
 }
 const later = () => { clearTimeout(timer); timer = setTimeout(check, 180) }
 
 async function run() {
-  const text = picked
   btn.value = null
+  const root = document.querySelector('.rz-text')
+  let text = picked
+  if (pickedRange && root) {
+    const full = expand(pickedRange, root)
+    text = full.toString().replace(/\s+/g, ' ').trim() || picked
+    // 把选区也扩到整句，读者看得到翻译的是哪一段
+    const sel = window.getSelection()
+    sel?.removeAllRanges()
+    sel?.addRange(full)
+  }
   if (!text) return
   source.value = text
   result.value = ''
