@@ -33,8 +33,8 @@ const link = (p: string) => withBase(localePath(lang.value, p))
       </a>
       <a class="pk-nav-btn" :class="{ on: on('/dictionary') }" :href="link('/dictionary/')">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M5.25 18.25V5a2 2 0 0 1 2-2h12.5v14.5H7.25a1.75 1.75 0 0 0 0 3.5h12.5M19.75 17.5V21M8 3v14.5" />
-          <path d="m10.5 13 1.6-5.5 1.6 5.5m-2.65-1.8h2.1m4.5-1.8V13m0-2.9c-.8-1.1-2.35-.6-2.35 1.05s1.55 2.15 2.35 1.05" />
+          <!-- 词典图标：打开的书（管理员提供，2026-11-18） -->
+          <path d="M3.75 4.5C7.1 4.1 9.85 5.05 12 7.15c2.15-2.1 4.9-3.05 8.25-2.65v14.1c-3.35-.4-6.1.55-8.25 2.15-2.15-1.6-4.9-2.55-8.25-2.15ZM12 7.15v13.6" />
         </svg>
         <span>{{ t('dictionary') }}</span>
       </a>

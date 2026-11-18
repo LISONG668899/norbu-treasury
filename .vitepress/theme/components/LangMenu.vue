@@ -35,9 +35,10 @@ onBeforeUnmount(() => { document.removeEventListener('click', onDoc); document.r
       :aria-expanded="open"
       @click="open = !open"
     >
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true">
-        <circle cx="12" cy="12" r="9" />
-        <path d="M3 12h18M12 3c2.6 2.6 2.6 15.4 0 18M12 3c-2.6 2.6-2.6 15.4 0 18" />
+      <!-- 语言图标（管理员提供，2026-11-18）；颜色随旁边按钮（currentColor） -->
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="8.75" />
+        <path d="M3.25 12h17.5M12 3.25c-5.15 4.65-5.15 12.85 0 17.5 5.15-4.65 5.15-12.85 0-17.5Z" />
       </svg>
       <span>{{ label }}</span>
     </button>
