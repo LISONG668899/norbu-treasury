@@ -62,6 +62,8 @@
   --list-w: 460px;
   --top-w: 1120px;
   --brand-h: 48px;
+  --brand-art-h: 64px;      /* 莲花+网站名合成图的高度 */
+  --foot-h: 76px;           /* 底部固定黄条的高度（给内容留位置） */
 
   /* ---- 颜色 ---- */
   --pk-bg: #ffffff;
@@ -146,7 +148,13 @@ body, .pk-item, .pk-searchbox, .pk-nav-btn { transition: background-color .25s, 
 /* 平板、手机点过之后不留“悬停”残影（以前 iPad 顶部会出现两条红线，就是搜索框点过后留下的红色边框）：
    所有悬停效果只在有鼠标的电脑上生效 */
 /* ============ 明黄色带（页眉、页脚），铺满整个宽度 ============ */
-.pk-sticky { width: 100%; }
+/* 所有设备（手机竖屏/横屏、iPad、电脑）：页眉黄条 + 搜索栏固定在顶部，底部四个按钮的黄条固定在底部，只有中间内容滑动 */
+.pk-sticky { width: 100%; position: sticky; top: 0; z-index: 40; background: var(--pk-bg); }
+.pk-band-top { padding-top: env(safe-area-inset-top, 0px); }
+.pk-band-bottom { position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; }
+.pk-footer { padding-bottom: calc(var(--foot-h) + 24px + env(safe-area-inset-bottom, 0px)); }   /* 给固定的底条让出位置 */
+.pk-mt-card { bottom: calc(var(--foot-h) + 8px + env(safe-area-inset-bottom, 0px)); max-height: 55vh; }
+.pk-search-panel { max-height: calc(100dvh - 300px); }
 .pk-band { width: 100%; background: var(--pk-band); color: var(--pk-band-ink); transition: background-color .25s; }
 .pk-band-bottom { padding-bottom: env(safe-area-inset-bottom, 0px); }   /* 避开 iPhone 底部横条 */
 
@@ -171,6 +179,11 @@ body, .pk-item, .pk-searchbox, .pk-nav-btn { transition: background-color .25s, 
   text-decoration: none !important;
 }
 .pk-brand img { display: block; height: var(--brand-h); width: auto; flex: none; }
+/* 莲花 + 网站名合成图：浅色显示 is-light，深色显示 is-dark */
+.pk-brand img.pk-brand-art { height: var(--brand-art-h); max-width: 100%; object-fit: contain; object-position: left center; }
+.pk-brand img.pk-brand-art.is-dark { display: none; }
+.dark .pk-brand img.pk-brand-art.is-light { display: none; }
+.dark .pk-brand img.pk-brand-art.is-dark { display: block; }
 .pk-brand-name {
   font-family: var(--font-read);
   font-size: var(--t-brand);
@@ -258,7 +271,7 @@ body, .pk-item, .pk-searchbox, .pk-nav-btn { transition: background-color .25s, 
   width: 100%;
   max-width: calc(var(--list-w) + 2 * var(--s3));   /* 与首页目录条一样宽 */
   margin: 0 auto;
-  padding: 48px var(--s3) 64px;      /* 搜索上下留白（48 / 64）远大于目录间距（24），一看就分成两组 */
+  padding: var(--s3) var(--s3);       /* 搜索栏固定在顶部，固定区不宜太高；与首页目录的距离由 .pk-catalog.is-home 的上边距拉开 */
 }
 .pk-searchbox {
   box-sizing: border-box;
@@ -528,6 +541,7 @@ html[lang="en"] .pk-title-main:not(.is-bo) { letter-spacing: .01em; }
 .pk-list { display: flex; flex-direction: column; gap: var(--s3); }
 /* 首页目录：文字短，条子窄，两边多留白 */
 .pk-catalog.is-list.is-home .pk-list { max-width: var(--list-w); margin: 0 auto; }
+.pk-catalog.is-home { margin-top: var(--s4); }
 .pk-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s2); }
 .pk-item {
   box-sizing: border-box;
@@ -780,6 +794,8 @@ html[lang="en"] .pk-item-name { letter-spacing: .01em; }
     --bo-item: 20px; --bo-title: 24px; --bo-read: 20px; --bo-ui: 18px;
     --ctrl-h: 44px;
     --brand-h: 40px;
+    --brand-art-h: 50px;
+    --foot-h: 72px;
   }
   .ui-zh, .ui-zht { --t-brand: 24px; }
   .ui-bo { --t-brand: 26px; }
@@ -787,14 +803,8 @@ html[lang="en"] .pk-item-name { letter-spacing: .01em; }
   .ui-en .pk-brand-name { letter-spacing: .08em; }
 
   /* 手机：上下两条明黄固定不动，只有中间内容滑动 */
-  .pk-sticky { position: sticky; top: 0; z-index: 40; background: var(--pk-bg); }
-  .pk-band-top { padding-top: env(safe-area-inset-top, 0px); }
-  .pk-band-bottom { position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; }
-  .pk-footer { padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px)); }   /* 给固定的底条让出位置 */
   /* 搜索框和黄条一起固定（.pk-sticky），不随内容滑动；固定区不宜太高，首页目录另外下移拉开距离 */
   .pk-catalog.is-home { margin-top: var(--s3); }
-  .pk-mt-card { bottom: calc(84px + env(safe-area-inset-bottom, 0px)); max-height: 55vh; }
-  .pk-search-panel { max-height: calc(100dvh - 260px); }
   .pk-top { padding: 8px 12px 8px var(--s2); gap: var(--s1); }
   .pk-brand { gap: 8px; }
   .pk-nav-btn { min-width: 48px; height: 52px; padding: 4px 2px 2px; }
@@ -809,3 +819,16 @@ html[lang="en"] .pk-item-name { letter-spacing: .01em; }
   .pk-shrines { gap: var(--s2) var(--s1); }
   .rz-text { padding: var(--s2) var(--s2) var(--s1); }
 }
+
+/* ============ 矮屏（手机横屏等）：固定在上下的部分压扁一些，给内容多留空间 ============ */
+@media (max-height: 520px) {
+  :root { --brand-art-h: 42px; --foot-h: 58px; }
+  .pk-top { padding-top: 4px; padding-bottom: 4px; }
+  .pk-nav-btn { height: 46px; }
+  .pk-searchrow { padding: 8px var(--s2); }
+  .pk-band-bottom .pk-nav-btn { height: 50px; }
+}
+
+/* ============ 第二层目录暂未定内容：先画空框（单列 / 两列） ============ */
+.pk-item.is-slot { min-height: 64px; cursor: default; }
+@media (max-width: 640px) { .pk-item.is-slot { min-height: 52px; } }

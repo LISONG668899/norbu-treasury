@@ -72,6 +72,8 @@ const placed = computed(() => {
   return v.map((it, i) => ({ it, col: cols[i] }))
 })
 
+// 内容未定时先画空框：catalog.slots = 框的个数（style: list 单列，grid 两列），框里不写字
+const slots = computed(() => Number(cat.value.slots) || 0)
 const listItems = computed(() => (style.value === 'shrine' ? singleList.value : items.value))
 const showShrines = computed(() => style.value === 'shrine' && volumes.value.length >= 2)
 </script>
@@ -100,6 +102,10 @@ const showShrines = computed(() => style.value === 'shrine' && volumes.value.len
         </svg>
         <span class="pk-shrine-letter">{{ p.it.title }}</span>
       </a>
+    </div>
+
+    <div v-else-if="slots" :class="style === 'grid' ? 'pk-grid' : 'pk-list'">
+      <span v-for="i in slots" :key="i" class="pk-item is-slot" aria-hidden="true"></span>
     </div>
 
     <p v-else-if="!listItems.length" class="pk-empty">{{ t('empty') }}</p>

@@ -100,8 +100,10 @@ function onLang(v: Lang) {
   <div class="pk-band pk-band-top" :class="`ui-${lang}`">
   <header class="pk-top">
     <a class="pk-brand" :href="homeLink">
-      <img :src="withBase('/logo-flower.png')" alt="" />
-      <span class="pk-brand-name">{{ t('siteName') }}</span>
+      <!-- 莲花 + 网站名合成图：四种语言 × 浅/深两种色调，共 8 张（public/brand/，管理员定稿 2026-11-19）；
+           两张都放进页面，用 CSS 按 .dark 显示其一，切换色调不闪烁 -->
+      <img class="pk-brand-art is-light" :src="withBase(`/brand/brand-${lang}-light.webp`)" :alt="t('siteName')" />
+      <img class="pk-brand-art is-dark" :src="withBase(`/brand/brand-${lang}-dark.webp`)" alt="" aria-hidden="true" />
     </a>
     <TopNav @lang="onLang" />
   </header>

@@ -2,8 +2,12 @@
 layout: page
 title: བཀའ་དང་བསྟན་བཅོས་ཀྱི་སྐོར།
 # 第二层：经龛（函号）ཀ–ལ。只显示已有文章的函；只有一函时不显示经龛，直接列出文章
+# 第二层内容尚未确定：先画空框（list 单列 / grid 两列，slots = 框的个数）
 catalog:
-  style: shrine
+  style: list
+  slots: 4
+# 原来的经龛（函号）清单先保留在这里，内容确定后再挪到下一层
+shrines:
   items:
     - title: ཀ
       link: /ka-bstan/ka/
