@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // 页面最底部：金刚杵 + 版权，下面一条明黄色带，放 关于我们 · 收藏 · 词典 · 留言。
 // 图标下方一律显示文字，任何设备都一样。
-import { computed } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { useRoute, withBase } from 'vitepress'
 import { useI18n, localePath, rootPathOf } from '../i18n'
 
@@ -10,9 +10,24 @@ const { lang, t } = useI18n()
 const here = computed(() => rootPathOf(route.path))
 const on = (p: string) => here.value.startsWith(p)
 const link = (p: string) => withBase(localePath(lang.value, p))
+
+// 金刚杵 + 版权 + 黄条 一起固定在屏幕底部；把这一块的实际高度写进 --bottom-h，
+// 页面内容据此在下方留出同样的空位，滚到底时最后一个条框也不会被挡住
+const bottom = ref<HTMLElement | null>(null)
+let ro: ResizeObserver | undefined
+onMounted(() => {
+  const set = () => {
+    if (bottom.value) document.documentElement.style.setProperty('--bottom-h', `${Math.ceil(bottom.value.getBoundingClientRect().height)}px`)
+  }
+  set()
+  if ('ResizeObserver' in window && bottom.value) { ro = new ResizeObserver(set); ro.observe(bottom.value) }
+  window.addEventListener('resize', set)
+})
+onBeforeUnmount(() => ro?.disconnect())
 </script>
 
 <template>
+  <div ref="bottom" class="pk-bottom">
   <footer class="pk-footer">
     <img class="pk-footer-icon" :src="withBase('/logo-vajra.png')" alt="" />
     <div class="pk-footer-text">© 2026 PUNDARIKA</div>
@@ -50,5 +65,6 @@ const link = (p: string) => withBase(localePath(lang.value, p))
         <span>{{ t('message') }}</span>
       </a>
     </nav>
+  </div>
   </div>
 </template>
