@@ -102,30 +102,38 @@ html[lang="bo"] { --t-sm: var(--bo-sm); --t-ui: var(--bo-ui); --t-body: var(--bo
 .ui-en { --t-brand: 22px; --t-nav: 12px; }
 /* 网站名与莲花大小相配：莲花高 48px，中文网站名 28px，藏文 30px，英文大写 PUNDARIKA 22px（字距加宽） */
 
+/* ============ 深色模式（2026-11-19 新配色：蓝黑 / 深蓝 / 灰蓝 / 浅蓝） ============
+   页面背景 #0D1928 · 顶部底部导航 #142C43 · 内容卡片 #203D57 · 悬停选中 #2C526F
+   按钮、选中图标 #A8D3ED · 正文 #E8EFF5 · 次要文字 #B2C5D5 */
 .dark {
-  --pk-bg: #1a1816;
-  --pk-band: #3b3324;
-  --pk-band-ink: #eadfc6;
-  --pk-gold: #8a7340;
-  --pk-search: rgba(120, 135, 150, .22);
-  --pk-search-ink: #a9b3bd;
-  --pk-search-ph: #78838e;
-  --pk-search-btn: rgba(150, 165, 180, .28);
-  --pk-search-btn-h: rgba(150, 165, 180, .40);
-  --pk-edge: rgba(138, 115, 64, .50);
-  --pk-brand-halo: 0.6px 0px 0 rgba(255, 255, 255, .38), -0.6px 0px 0 rgba(255, 255, 255, .38), 0px 0.6px 0 rgba(255, 255, 255, .38), 0px -0.6px 0 rgba(255, 255, 255, .38);   /* 暗色：更细更淡的白边（0.6px、38%），只勾一线，不抢字 */
-  --pk-gold-ink: #d4b46a;
-  --pk-soft: 0 0 12px rgba(0, 0, 0, .40);
-  --pk-ctl: #2e2a25;
-  --pk-border: #48413a;
-  --pk-ink: #ece6da;
-  --pk-ink-2: #bdb4a5;
-  --pk-ink-3: #8f877a;
-  --pk-brand: #d9808d;
-  --pk-shrine: #d98a98;
+  --pk-bg: #0d1928;           /* 页面背景：蓝黑 */
+  --pk-band: #142c43;         /* 顶部、底部导航：深蓝 */
+  --pk-band-ink: #b2c5d5;     /* 导航上的图标与文字：浅灰蓝 */
+  --pk-accent: #a8d3ed;       /* 按钮、选中图标：浅蓝 */
+  --pk-hover: #2c526f;        /* 悬停、选中背景 */
+  --pk-gold: #2c526f;         /* 原“金色细边”的位置：换成悬停蓝，细而不抢 */
+  --pk-search: rgba(32, 61, 87, .78);
+  --pk-search-ink: #e8eff5;
+  --pk-search-ph: #7f97ab;
+  --pk-search-btn: #a8d3ed;
+  --pk-search-btn-h: #c0e0f3;
+  --pk-edge: rgba(168, 211, 237, .16);   /* 卡片边线：极淡的浅蓝 */
+  --pk-brand-halo: none;
+  --pk-gold-ink: #a8d3ed;     /* 悬停、选中、焦点 */
+  --pk-soft: 0 0 12px rgba(0, 0, 0, .35);
+  --pk-ctl: #203d57;          /* 内容卡片：灰蓝 */
+  --pk-border: #2c526f;
+  --pk-ink: #e8eff5;          /* 正文：柔白 */
+  --pk-ink-2: #b2c5d5;        /* 次要文字：浅灰蓝 */
+  --pk-ink-3: #b2c5d5;
+  --pk-brand: #a8d3ed;        /* 选中的导航按钮 */
+  --pk-shrine: #a8d3ed;
   --pk-sun: #f5c542;
   --pk-shadow: none;
-  --vp-c-bg: #1a1816;
+  --vp-c-bg: #0d1928;
+  --vp-c-brand-1: #a8d3ed;
+  --vp-c-brand-2: #c0e0f3;
+  --vp-c-brand-soft: rgba(168, 211, 237, .16);
 }
 
 html, body { background: var(--pk-bg); color: var(--pk-ink); font-family: var(--font-ui); }
@@ -319,7 +327,7 @@ body, .pk-item, .pk-searchbox, .pk-nav-btn { transition: background-color .25s, 
   -webkit-appearance: none;
   appearance: none;
 }
-.dark .pk-search-input { color: #d3dae1; }
+.dark .pk-search-input { color: var(--pk-search-ink); }
 /* 藏文：字形下伸较长，单独下移、放宽行高，看起来才居中且不切掉下加字 */
 .pk-search-input.is-bo { height: auto; line-height: 2; padding: 7px 0 0; }
 .pk-search-input::placeholder { color: var(--pk-search-ph); opacity: 1; }
@@ -347,7 +355,7 @@ body, .pk-item, .pk-searchbox, .pk-nav-btn { transition: background-color .25s, 
 }
 .pk-search-go.is-bo { padding-top: 5px; font-size: 18px; }
 .pk-search-go:active { background: var(--pk-search-btn-h); }
-.dark .pk-search-go { color: #e6ebf0; }
+.dark .pk-search-go { color: #0d1928; }   /* 浅蓝按钮配蓝黑字 */
 
 /* 搜索结果：在搜索框正下方展开 */
 .pk-search-panel {
@@ -378,7 +386,7 @@ body, .pk-item, .pk-searchbox, .pk-nav-btn { transition: background-color .25s, 
 .pk-search-hit-title { display: block; font-family: var(--font-bo); font-size: 18px; line-height: 1.6; }
 .pk-search-hit-text { display: block; margin-top: 2px; font-family: var(--font-bo); font-size: 15px; line-height: 1.7; color: var(--pk-ink-2); overflow-wrap: anywhere; }
 .pk-search-hit mark { background: rgba(245, 208, 70, .55); color: inherit; border-radius: 2px; padding: 0 1px; }
-.dark .pk-search-hit mark { background: rgba(245, 208, 70, .3); }
+.dark .pk-search-hit mark { background: rgba(168, 211, 237, .28); color: inherit; }
 .pk-search-label { min-width: 0; line-height: 1.5; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
 /* ============ 第三行：页标题 ============ */
@@ -842,3 +850,12 @@ html[lang="en"] .pk-item-name { letter-spacing: .01em; }
 /* ============ 第二层目录暂未定内容：先画空框（单列 / 两列） ============ */
 .pk-item.is-slot { min-height: 64px; cursor: default; }
 @media (max-width: 640px) { .pk-item.is-slot { min-height: 52px; } }
+
+/* 深色：悬停、选中用 #2C526F 底色 */
+@media (hover: hover) and (pointer: fine) {
+  .dark a.pk-item:hover { background: var(--pk-hover); border-color: var(--pk-accent); }
+  .dark .pk-nav-btn:hover { background: rgba(44, 82, 111, .55); }
+}
+.dark .pk-nav-btn.on { background: rgba(44, 82, 111, .55); }
+.dark .pk-searchbox:focus-within { border-color: rgba(168, 211, 237, .45); }
+.dark .pk-footer-icon { filter: brightness(1.45) saturate(1.05); }

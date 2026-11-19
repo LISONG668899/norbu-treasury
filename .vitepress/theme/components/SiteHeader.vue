@@ -17,6 +17,13 @@ const router = useRouter()
 const { lang, t, name } = useI18n()
 const showSearch = ref(false)
 
+// 手机浏览器顶栏颜色跟着色调走：浅色明黄，深色深蓝（与页眉色带一致）
+onMounted(() => {
+  watch(isDark, (d) => {
+    document.querySelectorAll('meta[name="theme-color"]').forEach((m) => m.setAttribute('content', d ? '#142c43' : '#f5d046'))
+  }, { immediate: true })
+})
+
 const isHome = computed(() => rootPathOf(route.path).replace(/index\.html$/, '') === '/')
 const isText = computed(() => frontmatter.value.text === true)
 const title = computed(() => String(frontmatter.value.title || page.value.title || ''))
