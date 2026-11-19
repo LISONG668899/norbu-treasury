@@ -111,7 +111,7 @@ html[lang="bo"] { --t-sm: var(--bo-sm); --t-ui: var(--bo-ui); --t-body: var(--bo
   --pk-search-btn: rgba(150, 165, 180, .28);
   --pk-search-btn-h: rgba(150, 165, 180, .40);
   --pk-edge: rgba(138, 115, 64, .50);
-  --pk-brand-halo: 0 0 4px rgba(255, 255, 255, .14);
+  --pk-brand-halo: 0 0 1px rgba(255, 255, 255, .85), 0 0 3px rgba(255, 255, 255, .55), 0 0 7px rgba(255, 255, 255, .30);   /* 暗色也有白边，与白莲相配 */
   --pk-gold-ink: #d4b46a;
   --pk-soft: 0 0 12px rgba(0, 0, 0, .40);
   --pk-ctl: #2e2a25;
