@@ -154,7 +154,6 @@ body, .pk-item, .pk-searchbox, .pk-nav-btn { transition: background-color .25s, 
 .pk-sticky { width: 100%; position: sticky; top: 0; z-index: 40; background: var(--pk-bg); }
 .pk-band-top { padding-top: env(safe-area-inset-top, 0px); }
 .pk-band-bottom { position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; }
-.pk-footer { padding-bottom: calc(var(--foot-h) + 24px + env(safe-area-inset-bottom, 0px)); }   /* 给固定的底条让出位置 */
 .pk-mt-card { bottom: calc(var(--foot-h) + 8px + env(safe-area-inset-bottom, 0px)); max-height: 55vh; }
 .pk-search-panel { max-height: calc(100dvh - 300px); }
 .pk-band { width: 100%; background: var(--pk-band); color: var(--pk-band-ink); transition: background-color .25s; }
@@ -604,7 +603,8 @@ html[lang="en"] .pk-item-name { letter-spacing: .01em; }
 .pk-footer {
   max-width: var(--page-w);
   margin: var(--s6) auto 0;
-  padding: 0 var(--s3) var(--s3);
+  /* 下边留出固定底条的高度：金刚杵和版权随内容滚上来，滚到底时完整露在底条上方，不被遮住 */
+  padding: 0 var(--s3) calc(var(--foot-h) + var(--s3) + env(safe-area-inset-bottom, 0px));
   text-align: center;
 }
 .pk-footer-icon { height: 56px; width: auto; display: inline-block; margin-bottom: var(--s1); }
@@ -824,7 +824,7 @@ html[lang="en"] .pk-item-name { letter-spacing: .01em; }
 
 /* ============ 矮屏（手机横屏等）：固定在上下的部分压扁一些，给内容多留空间 ============ */
 @media (max-height: 520px) {
-  :root { --brand-art-h: 42px; --foot-h: 58px; }
+  :root { --brand-art-h: 42px; --foot-h: 70px; }
   .pk-top { padding-top: 4px; padding-bottom: 4px; }
   .pk-nav-btn { height: 46px; }
   .pk-searchrow { padding: 8px var(--s2); }
