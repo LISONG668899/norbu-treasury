@@ -130,6 +130,8 @@ html[lang="bo"] { --t-sm: var(--bo-sm); --t-ui: var(--bo-ui); --t-body: var(--bo
 
 html, body { background: var(--pk-bg); color: var(--pk-ink); font-family: var(--font-ui); }
 .VPContent, .VPPage, .VPContent.is-home, .Layout { background: transparent !important; }
+/* 金刚杵和版权紧跟在内容后面，随内容滚动；不再被撑到屏幕最下方（看起来像被锁定） */
+.Layout > .VPContent { flex: 0 0 auto !important; }
 .VPNav, .VPLocalNav { display: none !important; }
 .VPContent { padding-top: 0 !important; }
 
