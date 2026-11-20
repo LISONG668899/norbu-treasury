@@ -13,7 +13,7 @@
    【比例】阅读宽度 720px；首页目录条 460px（文字短，条子窄，两边多留白）
    【间距】只用 8 的倍数：8 / 16 / 24 / 32 / 48
    【颜色】与手机图标一致：
-       蓝色纸纹 #668daa  页眉、页脚两条色带（与手机浏览器色条连成一片；2026-11-20 由明黄改蓝）
+       蓝色纸纹 #608ca5  页眉、页脚两条色带（与手机浏览器色条连成一片；2026-11-20 由明黄改蓝）
        纯白          阅读区底色（长时间读经不刺眼）
        米色 #e9e0d3 + 赭金 #b28e46 细边   目录条
        蓝灰 #b2bcc6  搜索框（圆角比目录条小一档，以示区别）
@@ -43,7 +43,7 @@
   --t-sm: 13px;       /* 注释 */
   --t-ui: 16px;       /* 按钮、搜索框 */
   --t-body: 16px;     /* 输入框、提示语 */
-  --t-item: 20px;     /* 目录条 */
+  --t-item: 18px;     /* 目录条（2026-11-20 缩小两号） */
   --t-title: 25px;    /* 页标题 */
   --t-brand: 28px;    /* 左上角网站名（与莲花般配） */
   --t-nav: 12px;      /* 导航图标下的小字 */
@@ -51,7 +51,7 @@
   /* ---- 字号：藏文 ---- */
   --bo-sm: 16px;
   --bo-ui: 20px;
-  --bo-item: 22px;
+  --bo-item: 20px;
   --bo-title: 28px;
   --bo-read: 22px;
 
@@ -67,7 +67,7 @@
 
   /* ---- 颜色 ---- */
   --pk-bg: #ffffff;
-  --pk-band: #668daa;         /* 页眉、页脚色带：蓝色纸纹（图片 public/band-blue.webp，这是它的平均色，图片载入前先显示） */
+  --pk-band: #608ca5;         /* 页眉、页脚色带：蓝色纸纹（图片 public/band-blue.webp，这是它的平均色，图片载入前先显示） */
   --pk-band-img: url('/band-blue.webp');
   --pk-band-ink: #ffffff;     /* 色带上的图标与文字：白 */
   --pk-gold: #8fb0c8;         /* 细边：淡蓝（2026-11-20 由金色改蓝，配蓝色色带） */
@@ -169,7 +169,7 @@ body, .pk-item, .pk-searchbox, .pk-nav-btn { transition: background-color .25s, 
 .Layout { padding-bottom: calc(var(--bottom-h) + var(--s3)); box-sizing: border-box; }
 .pk-mt-card { bottom: calc(var(--bottom-h) + 8px); max-height: 50vh; }
 .pk-search-panel { max-height: calc(100dvh - var(--bottom-h) - 200px); }
-.pk-band { width: 100%; background: var(--pk-band); background-image: var(--pk-band-img); background-size: 256px 256px; background-repeat: repeat; color: var(--pk-band-ink); transition: background-color .25s; }
+.pk-band { width: 100%; background: var(--pk-band); background-image: var(--pk-band-img); background-size: 627px 627px; background-repeat: repeat; color: var(--pk-band-ink); transition: background-color .25s; }
 /* 横屏时避开刘海和圆角 */
 .pk-band { padding-left: env(safe-area-inset-left, 0px); padding-right: env(safe-area-inset-right, 0px); box-sizing: border-box; }
 /* 页面最外层底色也跟着色调，滚动回弹时露出的边缘不会是别的颜色 */
@@ -811,8 +811,8 @@ html[lang="en"] .pk-item-name { letter-spacing: .01em; }
 /* ============ 手机：页眉仍是 左标志+网站名 ｜ 右三个按钮；网站名太长时自动折成两行 ============ */
 @media (max-width: 640px) {
   :root {
-    --t-item: 18px; --t-title: 22px;
-    --bo-item: 20px; --bo-title: 24px; --bo-read: 20px; --bo-ui: 18px;
+    --t-item: 16px; --t-title: 22px;
+    --bo-item: 18px; --bo-title: 24px; --bo-read: 20px; --bo-ui: 18px;
     --ctrl-h: 44px;
     --brand-h: 40px;
     --brand-art-h: 50px;

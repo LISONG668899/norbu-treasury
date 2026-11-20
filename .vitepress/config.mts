@@ -69,11 +69,11 @@ export default withPwa(defineConfig({
     // 浅色明黄、深色深蓝，跟着色调走；不加的话手机会用固定的黄色去填，深色模式下就露出一条黄边
     ['meta', { name: 'viewport', content: 'width=device-width,initial-scale=1,viewport-fit=cover' }],
     // 浏览器顶栏颜色：按系统色调给初始值，切换色调时 SiteHeader.vue 再同步
-    ['meta', { name: 'theme-color', content: '#668daa', media: '(prefers-color-scheme: light)' }],
+    ['meta', { name: 'theme-color', content: '#608ca5', media: '(prefers-color-scheme: light)' }],
     ['meta', { name: 'theme-color', content: '#1c1c1c', media: '(prefers-color-scheme: dark)' }],
     // 安卓手机的部分浏览器（三星、小米、华为等）用 theme-color 给底部工具条或导航条上色，且只在页面打开时读一次。
     // 这里在页面一开始就按读者选的色调把它定好：深色是深蓝，浅色是原来的颜色，不再露出一条金黄/明黄
-    ['script', {}, '(function(){try{var s=localStorage.getItem(\'vitepress-theme-appearance\');var d=s===\'dark\'||((!s||s===\'auto\')&&window.matchMedia(\'(prefers-color-scheme: dark)\').matches);var c=d?\'#1c1c1c\':\'#668daa\';var m=document.querySelectorAll(\'meta[name=\"theme-color\"]\');for(var i=0;i<m.length;i++){m[i].setAttribute(\'content\',c);m[i].removeAttribute(\'media\');}}catch(e){}})()'],
+    ['script', {}, '(function(){try{var s=localStorage.getItem(\'vitepress-theme-appearance\');var d=s===\'dark\'||((!s||s===\'auto\')&&window.matchMedia(\'(prefers-color-scheme: dark)\').matches);var c=d?\'#1c1c1c\':\'#608ca5\';var m=document.querySelectorAll(\'meta[name=\"theme-color\"]\');for(var i=0;i<m.length;i++){m[i].setAttribute(\'content\',c);m[i].removeAttribute(\'media\');}}catch(e){}})()'],
     // 声明不同意 AI 训练使用本站内容（配合 public/robots.txt 与 Cloudflare 的 AI 爬虫拦截）
     ['meta', { name: 'robots', content: 'noai, noimageai' }],
     ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
@@ -145,8 +145,8 @@ export default withPwa(defineConfig({
       short_name: APP_NAME,
       description: SITE_TITLE,
       lang: 'bo',
-      theme_color: '#668daa',
-      background_color: '#668daa',
+      theme_color: '#608ca5',
+      background_color: '#608ca5',
       // 安卓已安装的 App：系统处于深色时，状态栏和底部导航条用深蓝（支持此项的浏览器才生效）
       user_preferences: { color_scheme_dark: { theme_color: '#1c1c1c', background_color: '#121212' } },
       display: 'standalone',
