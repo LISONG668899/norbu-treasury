@@ -5,7 +5,7 @@ title: གསུང་འབུམ་སྣ་ཚོགས་ཀྱི་སྐ�
 # 第二层内容尚未确定：先画空框（list 单列 / grid 两列，slots = 框的个数）
 catalog:
   style: grid
-  slots: 28
+  slots: 38
 # 原来的经龛（函号）清单先保留在这里，内容确定后再挪到下一层
 shrines:
   items:
