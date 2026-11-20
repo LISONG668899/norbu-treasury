@@ -70,16 +70,16 @@
   --pk-band: #668daa;         /* 页眉、页脚色带：蓝色纸纹（图片 public/band-blue.webp，这是它的平均色，图片载入前先显示） */
   --pk-band-img: url('/band-blue.webp');
   --pk-band-ink: #ffffff;     /* 色带上的图标与文字：白 */
-  --pk-gold: #b28e46;         /* 目录条细边 */
+  --pk-gold: #8fb0c8;         /* 细边：淡蓝（2026-11-20 由金色改蓝，配蓝色色带） */
   --pk-search: rgba(178, 188, 198, .42);   /* 搜索框：淡淡透明的蓝灰 */
   --pk-search-ink: #66717d;                /* 搜索框文字：淡一些，区别于目录的黑字 */
   --pk-search-ph: #9aa3ad;                 /* 搜索框默认提示字：再淡一档 */
   --pk-search-btn: rgba(62, 72, 84, .50);  /* 搜索按钮：深灰、半透明 */
   --pk-search-btn-h: rgba(62, 72, 84, .64);
-  --pk-edge: rgba(178, 142, 70, .38);      /* 目录条边线：淡金、半透明，看起来更细更柔 */
+  --pk-edge: rgba(102, 141, 170, .38);     /* 目录条边线：淡蓝、半透明，看起来更细更柔 */
   --pk-brand-halo: 1px 0px 0 rgba(255, 255, 255, .9), -1px 0px 0 rgba(255, 255, 255, .9), 0px 1px 0 rgba(255, 255, 255, .9), 0px -1px 0 rgba(255, 255, 255, .9), 0.7px 0.7px 0 rgba(255, 255, 255, .9), -0.7px 0.7px 0 rgba(255, 255, 255, .9), 0.7px -0.7px 0 rgba(255, 255, 255, .9), -0.7px -0.7px 0 rgba(255, 255, 255, .9);   /* 网站名清晰的细白边（零模糊，八方向各 1px），不发虚 */
-  --pk-gold-ink: #8a6a2a;     /* 深赭金：悬停、选中、焦点 */
-  --pk-soft: 0 0 12px rgba(90, 70, 30, .10), 0 1px 3px rgba(90, 70, 30, .07);   /* 向四周淡淡过渡的阴影 */
+  --pk-gold-ink: #4a7391;     /* 深一点的蓝：悬停、选中、焦点 */
+  --pk-soft: 0 0 12px rgba(40, 70, 100, .10), 0 1px 3px rgba(40, 70, 100, .07);   /* 向四周淡淡过渡的阴影（偏冷，配蓝色） */
   --pk-ctl: #e9e0d3;          /* 按钮、条框：纯米色 */
   --pk-border: #d6c9b5;
   --pk-ink: #1f1c19;
@@ -89,9 +89,9 @@
   --pk-shrine: #922d40;       /* 经龛线条与字母 */
   --pk-sun: #e09a00;
   --pk-shadow: 0 1px 2px rgba(60, 45, 25, .06);
-  --vp-c-brand-1: #8a6a2a;
-  --vp-c-brand-2: #a07e3a;
-  --vp-c-brand-soft: rgba(178, 142, 70, .18);
+  --vp-c-brand-1: #4a7391;
+  --vp-c-brand-2: #5d87a6;
+  --vp-c-brand-soft: rgba(102, 141, 170, .18);
   --vp-c-bg: #ffffff;
   --vp-nav-height: 0px;
 }
