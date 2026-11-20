@@ -20,7 +20,7 @@ const showSearch = ref(false)
 // 手机浏览器顶栏颜色跟着色调走：浅色明黄，深色深蓝（与页眉色带一致）
 onMounted(() => {
   watch(isDark, (d) => {
-    document.querySelectorAll('meta[name="theme-color"]').forEach((m) => m.setAttribute('content', d ? '#142c43' : '#f5d046'))
+    document.querySelectorAll('meta[name="theme-color"]').forEach((m) => m.setAttribute('content', d ? '#1c1c1c' : '#668daa'))
   }, { immediate: true })
 })
 

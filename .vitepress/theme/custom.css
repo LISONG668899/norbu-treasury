@@ -13,7 +13,7 @@
    【比例】阅读宽度 720px；首页目录条 460px（文字短，条子窄，两边多留白）
    【间距】只用 8 的倍数：8 / 16 / 24 / 32 / 48
    【颜色】与手机图标一致：
-       明黄 #f5d046  页眉、页脚两条色带（与手机浏览器色条连成一片）
+       蓝色纸纹 #668daa  页眉、页脚两条色带（与手机浏览器色条连成一片；2026-11-20 由明黄改蓝）
        纯白          阅读区底色（长时间读经不刺眼）
        米色 #e9e0d3 + 赭金 #b28e46 细边   目录条
        蓝灰 #b2bcc6  搜索框（圆角比目录条小一档，以示区别）
@@ -67,8 +67,9 @@
 
   /* ---- 颜色 ---- */
   --pk-bg: #ffffff;
-  --pk-band: #f5d046;         /* 页眉、页脚色带：明黄 */
-  --pk-band-ink: #4a4843;     /* 色带上的图标与文字 */
+  --pk-band: #668daa;         /* 页眉、页脚色带：蓝色纸纹（图片 public/band-blue.webp，这是它的平均色，图片载入前先显示） */
+  --pk-band-img: url('/band-blue.webp');
+  --pk-band-ink: #ffffff;     /* 色带上的图标与文字：白 */
   --pk-gold: #b28e46;         /* 目录条细边 */
   --pk-search: rgba(178, 188, 198, .42);   /* 搜索框：淡淡透明的蓝灰 */
   --pk-search-ink: #66717d;                /* 搜索框文字：淡一些，区别于目录的黑字 */
@@ -102,38 +103,37 @@ html[lang="bo"] { --t-sm: var(--bo-sm); --t-ui: var(--bo-ui); --t-body: var(--bo
 .ui-en { --t-brand: 22px; --t-nav: 12px; }
 /* 网站名与莲花大小相配：莲花高 48px，中文网站名 28px，藏文 30px，英文大写 PUNDARIKA 22px（字距加宽） */
 
-/* ============ 深色模式（2026-11-19 新配色：蓝黑 / 深蓝 / 灰蓝 / 浅蓝） ============
-   页面背景 #0D1928 · 顶部底部导航 #142C43 · 内容卡片 #203D57 · 悬停选中 #2C526F
-   按钮、选中图标 #A8D3ED · 正文 #E8EFF5 · 次要文字 #B2C5D5 */
+/* ============ 深色模式（2026-11-20 改为黑白：黑底、深灰导航、灰卡片，白字调柔和） ============ */
 .dark {
-  --pk-bg: #0d1928;           /* 页面背景：蓝黑 */
-  --pk-band: #142c43;         /* 顶部、底部导航：深蓝 */
-  --pk-band-ink: #b2c5d5;     /* 导航上的图标与文字：浅灰蓝 */
-  --pk-accent: #a8d3ed;       /* 按钮、选中图标：浅蓝 */
-  --pk-hover: #2c526f;        /* 悬停、选中背景 */
-  --pk-gold: #2c526f;         /* 原“金色细边”的位置：换成悬停蓝，细而不抢 */
-  --pk-search: rgba(32, 61, 87, .78);
-  --pk-search-ink: #e8eff5;
-  --pk-search-ph: #7f97ab;
-  --pk-search-btn: #a8d3ed;
-  --pk-search-btn-h: #c0e0f3;
-  --pk-edge: rgba(168, 211, 237, .16);   /* 卡片边线：极淡的浅蓝 */
+  --pk-bg: #121212;           /* 页面背景：近黑 */
+  --pk-band: #1c1c1c;         /* 顶部、底部导航：深灰 */
+  --pk-band-img: none;
+  --pk-band-ink: #b8b8b8;     /* 导航上的图标与文字 */
+  --pk-accent: #e6e6e6;       /* 按钮、选中图标 */
+  --pk-hover: #333333;        /* 悬停、选中背景 */
+  --pk-gold: #333333;
+  --pk-search: rgba(255, 255, 255, .07);
+  --pk-search-ink: #d6d6d6;
+  --pk-search-ph: #777777;
+  --pk-search-btn: #d9d9d9;
+  --pk-search-btn-h: #ececec;
+  --pk-edge: rgba(255, 255, 255, .10);   /* 卡片边线：极淡 */
   --pk-brand-halo: none;
-  --pk-gold-ink: #a8d3ed;     /* 悬停、选中、焦点 */
-  --pk-soft: 0 0 12px rgba(0, 0, 0, .35);
-  --pk-ctl: #203d57;          /* 内容卡片：灰蓝 */
-  --pk-border: #2c526f;
-  --pk-ink: #e8eff5;          /* 正文：柔白 */
-  --pk-ink-2: #b2c5d5;        /* 次要文字：浅灰蓝 */
-  --pk-ink-3: #b2c5d5;
-  --pk-brand: #a8d3ed;        /* 选中的导航按钮 */
-  --pk-shrine: #a8d3ed;
+  --pk-gold-ink: #e6e6e6;     /* 悬停、选中、焦点 */
+  --pk-soft: 0 0 12px rgba(0, 0, 0, .4);
+  --pk-ctl: #242424;          /* 内容卡片：深灰 */
+  --pk-border: #333333;
+  --pk-ink: #d4d4d4;          /* 正文：柔白（不用纯白，避免刺眼） */
+  --pk-ink-2: #a6a6a6;        /* 次要文字 */
+  --pk-ink-3: #8c8c8c;
+  --pk-brand: #e6e6e6;        /* 选中的导航按钮 */
+  --pk-shrine: #cfcfcf;
   --pk-sun: #f5c542;
   --pk-shadow: none;
-  --vp-c-bg: #0d1928;
-  --vp-c-brand-1: #a8d3ed;
-  --vp-c-brand-2: #c0e0f3;
-  --vp-c-brand-soft: rgba(168, 211, 237, .16);
+  --vp-c-bg: #121212;
+  --vp-c-brand-1: #e0e0e0;
+  --vp-c-brand-2: #f0f0f0;
+  --vp-c-brand-soft: rgba(255, 255, 255, .12);
 }
 
 html, body { background: var(--pk-bg); color: var(--pk-ink); font-family: var(--font-ui); }
@@ -169,7 +169,7 @@ body, .pk-item, .pk-searchbox, .pk-nav-btn { transition: background-color .25s, 
 .Layout { padding-bottom: calc(var(--bottom-h) + var(--s3)); box-sizing: border-box; }
 .pk-mt-card { bottom: calc(var(--bottom-h) + 8px); max-height: 50vh; }
 .pk-search-panel { max-height: calc(100dvh - var(--bottom-h) - 200px); }
-.pk-band { width: 100%; background: var(--pk-band); color: var(--pk-band-ink); transition: background-color .25s; }
+.pk-band { width: 100%; background: var(--pk-band); background-image: var(--pk-band-img); background-size: 256px 256px; background-repeat: repeat; color: var(--pk-band-ink); transition: background-color .25s; }
 /* 横屏时避开刘海和圆角 */
 .pk-band { padding-left: env(safe-area-inset-left, 0px); padding-right: env(safe-area-inset-right, 0px); box-sizing: border-box; }
 /* 页面最外层底色也跟着色调，滚动回弹时露出的边缘不会是别的颜色 */
@@ -241,6 +241,8 @@ html { background-color: var(--pk-bg); }
 @media (hover: hover) and (pointer: fine) { .pk-nav-btn:hover { background: rgba(255, 255, 255, .35); } }
 @media (hover: hover) and (pointer: fine) { .dark .pk-nav-btn:hover { background: rgba(255, 255, 255, .08); } }
 .pk-nav-btn.on { color: var(--pk-brand) !important; }
+html:not(.dark) .pk-nav-btn.on { color: #ffffff !important; background: rgba(255, 255, 255, .18); }   /* 蓝色色带上：当前页按钮白字加淡白底 */
+html:not(.dark) .pk-band { text-shadow: 0 1px 1px rgba(30, 50, 70, .25); }   /* 白字在蓝纸纹上更清楚 */
 .pk-nav-sep { width: 1px; height: 28px; margin: 0 6px; background: var(--pk-border); }
 .pk-tone .ic-sun { color: currentColor; }
 .pk-tone .ic-moon { display: none; }
@@ -359,7 +361,7 @@ html { background-color: var(--pk-bg); }
 }
 .pk-search-go.is-bo { padding-top: 5px; font-size: 18px; }
 .pk-search-go:active { background: var(--pk-search-btn-h); }
-.dark .pk-search-go { color: #0d1928; }   /* 浅蓝按钮配蓝黑字 */
+.dark .pk-search-go { color: #121212; }   /* 浅灰按钮配黑字 */
 
 /* 搜索结果：在搜索框正下方展开 */
 .pk-search-panel {
@@ -390,7 +392,7 @@ html { background-color: var(--pk-bg); }
 .pk-search-hit-title { display: block; font-family: var(--font-bo); font-size: 18px; line-height: 1.6; }
 .pk-search-hit-text { display: block; margin-top: 2px; font-family: var(--font-bo); font-size: 15px; line-height: 1.7; color: var(--pk-ink-2); overflow-wrap: anywhere; }
 .pk-search-hit mark { background: rgba(245, 208, 70, .55); color: inherit; border-radius: 2px; padding: 0 1px; }
-.dark .pk-search-hit mark { background: rgba(168, 211, 237, .28); color: inherit; }
+.dark .pk-search-hit mark { background: rgba(255, 255, 255, .18); color: inherit; }
 .pk-search-label { min-width: 0; line-height: 1.5; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
 /* ============ 第三行：页标题 ============ */
@@ -858,8 +860,8 @@ html[lang="en"] .pk-item-name { letter-spacing: .01em; }
 /* 深色：悬停、选中用 #2C526F 底色 */
 @media (hover: hover) and (pointer: fine) {
   .dark a.pk-item:hover { background: var(--pk-hover); border-color: var(--pk-accent); }
-  .dark .pk-nav-btn:hover { background: rgba(44, 82, 111, .55); }
+  .dark .pk-nav-btn:hover { background: rgba(255, 255, 255, .08); }
 }
-.dark .pk-nav-btn.on { background: rgba(44, 82, 111, .55); }
-.dark .pk-searchbox:focus-within { border-color: rgba(168, 211, 237, .45); }
+.dark .pk-nav-btn.on { background: rgba(255, 255, 255, .08); }
+.dark .pk-searchbox:focus-within { border-color: rgba(255, 255, 255, .30); }
 .dark .pk-footer-icon { filter: brightness(1.45) saturate(1.05); }
