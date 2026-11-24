@@ -80,7 +80,8 @@
   --pk-gold-ink: #526f7a;     /* 悬停边线、选中：石青深一档 */
   --pk-focus: #8b2635;        /* 键盘焦点：绛红细线（小面积） */
   --pk-hover: #fbfaf6;        /* 卡片悬停：略亮一点 */
-  --pk-soft: 0 2px 8px rgba(35, 39, 40, .07);        /* 卡片：轻阴影 */
+  --pk-soft: 0 1px 3px rgba(35, 39, 40, .06), 0 3px 10px rgba(35, 39, 40, .06);   /* 卡片、搜索框：不用边线，只用一点点淡阴影 */
+  --pk-soft-h: 0 2px 5px rgba(35, 39, 40, .08), 0 6px 16px rgba(35, 39, 40, .08);  /* 悬停、搜索框聚焦：阴影略深一点 */
   --pk-float: 0 5px 16px rgba(35, 39, 40, .10);      /* 菜单、弹层：浮层阴影 */
   --pk-ctl: #f8f6f0;          /* 内容卡片：温润纸白 SURFACE */
   --pk-border: #d8d3c9;
@@ -125,7 +126,8 @@ html[lang="bo"] { --t-sm: var(--bo-sm); --t-ui: var(--bo-ui); --t-body: var(--bo
   --pk-brand-halo: none;
   --pk-gold-ink: #5f7f8c;
   --pk-focus: #d17b87;
-  --pk-soft: none;            /* 深色卡片：平面，不加静止阴影 */
+  --pk-soft: 0 1px 4px rgba(0, 0, 0, .28);          /* 深色：极淡的阴影，只为和底色分开 */
+  --pk-soft-h: 0 2px 8px rgba(0, 0, 0, .38);
   --pk-float: 0 5px 18px rgba(0, 0, 0, .24);
   --pk-ctl: #1d272c;          /* 内容卡片 SURFACE */
   --pk-border: #344148;
@@ -157,7 +159,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
 [tabindex="-1"]:focus, [tabindex="-1"]:focus-visible, .VPSkipLink:focus { outline: none !important; box-shadow: none !important; }
 /* 搜索框关掉后焦点会回到框上；iPad 会把焦点框画成上下两条红线，这里不画 */
 .pk-searchbox:focus, .pk-searchbox:focus-visible { outline: none; }
-.pk-searchbox:focus-within { border-color: var(--pk-gold-ink); }
+.pk-searchbox:focus-within { box-shadow: var(--pk-soft-h); }
 body, .pk-item, .pk-searchbox, .pk-nav-btn { transition: background-color .25s, border-color .25s, color .25s; }
 .dark .pk-footer-icon { filter: brightness(1.35) saturate(1.1); }
 
@@ -307,7 +309,7 @@ html:not(.dark) .pk-band { text-shadow: 0 1px 1px rgba(30, 50, 70, .25); }   /* 
   display: flex;
   align-items: center;
   gap: 12px;
-  border: 1px solid var(--pk-edge);  /* 细暖灰边 */
+  border: 1px solid transparent;  /* 不要边线，只靠淡阴影托起 */
   border-radius: var(--r-ctl);
   background: var(--pk-search);
   color: var(--pk-search-ink);
@@ -319,7 +321,7 @@ html:not(.dark) .pk-band { text-shadow: 0 1px 1px rgba(30, 50, 70, .25); }   /* 
   overflow: hidden;                 /* 藏文字高较大，绝不溢出框外 */
 }
 @media (hover: hover) and (pointer: fine) {
-  .pk-searchbox:hover { border-color: var(--pk-gold); }
+  .pk-searchbox:hover { box-shadow: var(--pk-soft-h); }
   .pk-search-go:hover { color: var(--pk-gold-ink); }
   .pk-search-hit:hover { background: var(--pk-ctl); }
 }
@@ -569,7 +571,7 @@ html[lang="en"] .pk-title-main:not(.is-bo) { letter-spacing: .01em; }
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--pk-edge);
+  border: 1px solid transparent;
   border-radius: var(--r-card);
   background: var(--pk-ctl);
   color: var(--pk-ink) !important;
@@ -578,7 +580,7 @@ html[lang="en"] .pk-title-main:not(.is-bo) { letter-spacing: .01em; }
   box-shadow: var(--pk-soft);
   transition: border-color .2s, transform .15s;
 }
-@media (hover: hover) and (pointer: fine) { a.pk-item:hover { border-color: var(--pk-gold-ink); } }
+@media (hover: hover) and (pointer: fine) { a.pk-item:hover { box-shadow: var(--pk-soft-h); } }
 .pk-item.off { opacity: .55; cursor: default; box-shadow: none; }
 .pk-item-name { font-family: var(--font-read); font-size: var(--t-item); line-height: 1.5; letter-spacing: .04em; overflow-wrap: anywhere; }
 html[lang="en"] .pk-item-name { letter-spacing: .01em; }
@@ -639,7 +641,7 @@ html[lang="en"] .pk-item-name { letter-spacing: .01em; }
 .pk-saved { max-width: var(--page-w); margin: 0 auto; padding: 0 var(--s3); box-sizing: border-box; }
 .pk-saved ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: var(--s2); }
 .pk-saved li {
-  border: 1px solid var(--pk-edge);
+  border: 1px solid transparent;
   border-radius: var(--r-card);
   background: var(--pk-ctl);
   box-shadow: var(--pk-soft);
@@ -740,7 +742,7 @@ html[lang="en"] .pk-item-name { letter-spacing: .01em; }
   min-width: 160px;
   height: var(--ctrl-h);
   margin-top: var(--s1);
-  border: 1px solid var(--pk-edge);
+  border: 1px solid transparent;
   border-radius: var(--r-card);
   background: var(--pk-ctl);
   color: var(--pk-ink);
@@ -859,7 +861,6 @@ html[lang="en"] .pk-item-name { letter-spacing: .01em; }
 /* 悬停、选中 */
 @media (hover: hover) and (pointer: fine) {
   a.pk-item:hover { background: var(--pk-hover); }
-  .dark a.pk-item:hover { border-color: var(--pk-accent); }
   .dark .pk-nav-btn:hover { background: var(--pk-sel); }
 }
 .dark .pk-nav-btn.on { color: var(--pk-band-ink) !important; background: var(--pk-sel); }
