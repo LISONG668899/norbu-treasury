@@ -157,10 +157,6 @@ onBeforeUnmount(() => {
 <template>
   <div ref="root" class="pk-search">
     <form class="pk-searchbox" role="search" @submit.prevent="onEnter">
-      <svg class="pk-search-ic" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-        <circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8" />
-        <path d="M15.5 15.5 21 21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
-      </svg>
       <input
         ref="input"
         v-model="q"
@@ -184,7 +180,13 @@ onBeforeUnmount(() => {
           <path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
         </svg>
       </button>
-      <button class="pk-search-go" :class="{ 'is-bo': lang === 'bo' }" type="submit">{{ t('searchBtn') }}</button>
+      <!-- 右侧只放搜索图标，点它等同回车 -->
+      <button class="pk-search-go" type="submit" :aria-label="t('searchBtn')" :title="t('searchBtn')">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" aria-hidden="true">
+          <circle cx="10.6" cy="10.6" r="6.25" stroke="currentColor" stroke-width="1.8" />
+          <path d="M15.15 15.15 21 21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+        </svg>
+      </button>
     </form>
 
     <div v-if="open && q.trim() && (busy || done)" class="pk-search-panel">
