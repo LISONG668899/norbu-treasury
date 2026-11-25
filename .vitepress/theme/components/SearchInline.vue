@@ -22,6 +22,7 @@ const root = ref<HTMLElement>()
 const input = ref<HTMLInputElement>()
 const q = ref('')
 const open = ref(false)
+const focused = ref(false)   // 未输入且未点进去时，图标和“搜索”二字居中显示
 const busy = ref(false)
 const done = ref(false)
 const hits = shallowRef<Hit[]>([])
@@ -156,7 +157,15 @@ onBeforeUnmount(() => {
 
 <template>
   <div ref="root" class="pk-search">
-    <form class="pk-searchbox" role="search" @submit.prevent="onEnter">
+    <form class="pk-searchbox" :class="{ 'is-idle': !q && !focused }" role="search" @submit.prevent="onEnter">
+      <!-- 空闲时：放大镜 + “搜索”居中（不拦截点击，点哪里都进入输入） -->
+      <span v-if="!q && !focused" class="pk-search-hint" :class="{ 'is-bo': lang === 'bo' }" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none">
+          <circle cx="10.6" cy="10.6" r="6.25" stroke="currentColor" stroke-width="1.8" />
+          <path d="M15.15 15.15 21 21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+        </svg>
+        <span>{{ t('searchHint') }}</span>
+      </span>
       <input
         ref="input"
         v-model="q"
@@ -169,9 +178,10 @@ onBeforeUnmount(() => {
         autocapitalize="off"
         spellcheck="false"
         maxlength="64"
-        :placeholder="t('search')"
+        :placeholder="focused ? t('searchHint') : ''"
         :aria-label="t('search')"
-        @focus="open = true"
+        @focus="open = true; focused = true"
+        @blur="focused = false"
         @compositionstart="composing = true"
         @compositionend="composing = false; q = ($event.target as HTMLInputElement).value"
       />
@@ -181,7 +191,7 @@ onBeforeUnmount(() => {
         </svg>
       </button>
       <!-- 右侧只放搜索图标，点它等同回车 -->
-      <button class="pk-search-go" type="submit" :aria-label="t('searchBtn')" :title="t('searchBtn')">
+      <button v-show="q || focused" class="pk-search-go" type="submit" :aria-label="t('searchBtn')" :title="t('searchBtn')">
         <svg viewBox="0 0 24 24" width="22" height="22" fill="none" aria-hidden="true">
           <circle cx="10.6" cy="10.6" r="6.25" stroke="currentColor" stroke-width="1.8" />
           <path d="M15.15 15.15 21 21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
