@@ -343,20 +343,42 @@ html:not(.dark) .pk-band { text-shadow: 0 1px 1px rgba(30, 50, 70, .25); }   /* 
 .dark .pk-search-input { color: var(--pk-search-ink); }
 /* 藏文：字形下伸较长，单独下移、放宽行高，看起来才居中且不切掉下加字 */
 .pk-search-input.is-bo { height: auto; line-height: 2; padding: 6px 0 0; font-size: .88em; }   /* 搜索框里的藏文比目录小约 12%，更像工具入口 */
-/* 搜索框“凹进去一点点”：不用边线，只用内阴影（上沿略深、下沿略亮） */
-.pk-searchbox { position: relative; box-shadow: inset 0 1px 3px rgba(35, 39, 40, .10), inset 0 -1px 0 rgba(255, 255, 255, .55) !important; }
-.dark .pk-searchbox { box-shadow: inset 0 1px 3px rgba(0, 0, 0, .45), inset 0 -1px 0 rgba(255, 255, 255, .03) !important; }
-.pk-searchbox:focus-within { box-shadow: inset 0 1px 4px rgba(35, 39, 40, .14), inset 0 -1px 0 rgba(255, 255, 255, .55) !important; }
-.dark .pk-searchbox:focus-within { box-shadow: inset 0 1px 4px rgba(0, 0, 0, .55) !important; }
-/* 空闲时：放大镜 + “搜索”在框中居中 */
-.pk-search-hint {
-  position: absolute; inset: 0;
-  display: flex; align-items: center; justify-content: center; gap: 8px;
-  color: var(--pk-search-ph); pointer-events: none;
-  font-family: var(--font-ui); font-size: var(--t-ui); line-height: 1;
+/* 搜索框：保持原来的圆角形状，只加微微凸起的立体感（参照苹果地图搜索栏）——
+   上亮下略暗的渐变 + 顶部一道高光 + 很淡的外阴影，不用边线 */
+.pk-searchbox {
+  background: linear-gradient(to bottom, #fdfcf9, #f3f1ec) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .95),
+    inset 0 -1px 0 rgba(35, 39, 40, .05),
+    0 0 0 .5px rgba(35, 39, 40, .08),
+    0 1px 2px rgba(35, 39, 40, .08),
+    0 4px 12px rgba(35, 39, 40, .07) !important;
 }
-.pk-search-hint svg { flex: none; }
-.pk-search-hint.is-bo span { font-family: var(--font-bo); font-size: .88em; line-height: 2; padding-top: 5px; }
+.pk-searchbox:focus-within {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .95),
+    inset 0 -1px 0 rgba(35, 39, 40, .05),
+    0 0 0 .5px rgba(35, 39, 40, .10),
+    0 2px 4px rgba(35, 39, 40, .10),
+    0 6px 18px rgba(35, 39, 40, .09) !important;
+}
+.dark .pk-searchbox {
+  background: linear-gradient(to bottom, #25323a, #1b252a) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .07),
+    inset 0 -1px 0 rgba(0, 0, 0, .25),
+    0 0 0 .5px rgba(255, 255, 255, .05),
+    0 1px 2px rgba(0, 0, 0, .35),
+    0 4px 12px rgba(0, 0, 0, .30) !important;
+}
+.dark .pk-searchbox:focus-within {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .09),
+    inset 0 -1px 0 rgba(0, 0, 0, .25),
+    0 0 0 .5px rgba(255, 255, 255, .07),
+    0 2px 4px rgba(0, 0, 0, .40),
+    0 6px 18px rgba(0, 0, 0, .35) !important;
+}
 
 .pk-search-input::placeholder { color: var(--pk-search-ph); opacity: 1; }
 .pk-search-input::-webkit-search-cancel-button { display: none; }

@@ -73,7 +73,7 @@ const UI: Record<string, Record<Lang, string>> = {
   saved:       { bo: 'ཉར་ཚགས།', zh: '收藏', zht: '收藏', en: 'Saved' },
   message:     { bo: 'བསམ་འཆར།', zh: '留言', zht: '留言', en: 'Message' },
   searchBtn:   { bo: 'འཚོལ།', zh: '搜索', zht: '搜尋', en: 'Search' },
-  searchHint:  { bo: 'འཚོལ་བ།', zh: '搜索', zht: '搜尋', en: 'Search' },   // 搜索框正中的提示字：简短
+  searchHint:  { bo: 'འཚོལ།', zh: '搜索', zht: '搜尋', en: 'Search' },   // 搜索框左侧的提示字：简短
   searching:   { bo: 'འཚོལ་བཞིན་པ། …', zh: '正在搜索…', zht: '正在搜尋…', en: 'Searching…' },
   noResult:    { bo: 'འཚོལ་འབྲས་མ་རྙེད།', zh: '没有找到', zht: '沒有找到', en: 'No results' },
   clear:       { bo: 'གསལ་བ།', zh: '清除', zht: '清除', en: 'Clear' },
