@@ -56,6 +56,7 @@
 
   /* ---- 间距与尺寸 ---- */
   --s1: 8px; --s2: 16px; --s3: 24px; --s4: 32px; --s6: 48px;
+  --foot-gap: 46px;  /* 最后一个目录条 → 金刚杵：连同页脚内边距共约 56px，与“搜索栏 → 第一个目录条”的间距一致 */
   --ctrl-h: 48px;
   --page-w: 720px;
   --list-w: 460px;
@@ -170,11 +171,15 @@ body, .pk-item, .pk-searchbox, .pk-nav-btn { transition: background-color .25s, 
 .pk-sticky { width: 100%; position: sticky; top: 0; z-index: 40; background: var(--pk-bg); }
 .pk-band-top { padding-top: env(safe-area-inset-top, 0px); }
 /* 底部：金刚杵 + 版权 + 黄条按钮，三样一起固定在屏幕最下方，完整显示，不随内容滚动 */
-:root { --bottom-h: 170px; }   /* 实际高度由 FootNav.vue 量出后写入 */
-.pk-bottom { position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; background: var(--pk-bg); }
-.pk-bottom::before { content: ''; position: absolute; left: 0; right: 0; top: -8px; height: 8px; pointer-events: none;
-  background: linear-gradient(to bottom, transparent, color-mix(in srgb, var(--pk-bg) 55%, transparent)); }   /* 渐隐只留很短很淡的一道，不像雾一样压住内容 */
-.Layout { padding-bottom: calc(var(--bottom-h) + var(--s3)); box-sizing: border-box; }
+:root { --bottom-h: 170px; --band-h: 72px; }   /* 实际高度由 FootNav.vue 量出后写入 */
+/* 色带：始终固定在屏幕最下方 */
+.pk-bottom { display: contents; }   /* 让金刚杵的 sticky 以整页为范围，而不是只在这个小容器里 */
+.pk-band-bottom { position: fixed; left: 0; right: 0; bottom: 0; z-index: 41; }
+/* 金刚杵 + 版权：sticky。内容短时紧跟内容（与上方保持统一的段落间距），内容长时贴在色带上方固定、完整显示 */
+.pk-footer { position: sticky; bottom: var(--band-h); z-index: 40; background: var(--pk-bg); }
+.pk-footer::before { content: ''; position: absolute; left: 0; right: 0; top: -8px; height: 8px; pointer-events: none;
+  background: linear-gradient(to bottom, transparent, color-mix(in srgb, var(--pk-bg) 55%, transparent)); }   /* 渐隐只留很短很淡的一道 */
+.Layout { padding-bottom: var(--band-h); box-sizing: border-box; }
 .pk-mt-card { bottom: calc(var(--bottom-h) + 8px); max-height: 50vh; }
 .pk-search-panel { max-height: calc(100dvh - var(--bottom-h) - 200px); }
 .pk-band { width: 100%; background: var(--pk-band); background-image: var(--pk-band-img); background-size: 627px 627px; background-repeat: repeat; color: var(--pk-band-ink); transition: background-color .25s; }
@@ -657,8 +662,8 @@ html[lang="en"] .pk-item-name { letter-spacing: .01em; }
 
 /* ============ 页脚：金刚杵 + 版权，下面是明黄色带里的四个按钮 ============ */
 .pk-footer {
-  max-width: var(--page-w);
-  margin: 0 auto;
+  max-width: none;                  /* 贴底时整条底色要横向铺满，才能盖住后面滚动的内容 */
+  margin: var(--foot-gap) 0 0;      /* 与“搜索栏→目录”同样的间距：同一节奏，既分组又不空旷 */
   padding: 10px var(--s3) 8px;
   text-align: center;
   line-height: 1;
@@ -853,6 +858,7 @@ html[lang="en"] .pk-item-name { letter-spacing: .01em; }
     --ctrl-h: 44px;
     --brand-h: 40px;
     --brand-art-h: 50px;
+    --foot-gap: 38px;  /* 手机：共约 48px，同样与搜索栏下方的间距一致 */
     --vajra-h: 40px;
   }
   .ui-zh, .ui-zht { --t-brand: 24px; }

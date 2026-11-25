@@ -11,16 +11,28 @@ const here = computed(() => rootPathOf(route.path))
 const on = (p: string) => here.value.startsWith(p)
 const link = (p: string) => withBase(localePath(lang.value, p))
 
-// 金刚杵 + 版权 + 黄条 一起固定在屏幕底部；把这一块的实际高度写进 --bottom-h，
-// 页面内容据此在下方留出同样的空位，滚到底时最后一个条框也不会被挡住
+// 底部布局（2026-11-25）：蓝色色带始终固定在屏幕最下方；金刚杵 + 版权用 sticky——
+// 内容短时紧跟在内容后面（留出与“搜索栏→目录”相同的间距，不留大片空白），
+// 内容长时贴在色带上方固定不动、完整显示。
+// 这里量出色带高度写入 --band-h、色带+金刚杵总高写入 --bottom-h，供翻译卡片等定位使用。
 const bottom = ref<HTMLElement | null>(null)
 let ro: ResizeObserver | undefined
 onMounted(() => {
   const set = () => {
-    if (bottom.value) document.documentElement.style.setProperty('--bottom-h', `${Math.ceil(bottom.value.getBoundingClientRect().height)}px`)
+    const el = bottom.value
+    if (!el) return
+    const band = el.querySelector('.pk-band-bottom') as HTMLElement | null
+    const foot = el.querySelector('.pk-footer') as HTMLElement | null
+    const bh = band ? Math.ceil(band.getBoundingClientRect().height) : 0
+    const fh = foot ? Math.ceil(foot.getBoundingClientRect().height) : 0
+    document.documentElement.style.setProperty('--band-h', `${bh}px`)
+    document.documentElement.style.setProperty('--bottom-h', `${bh + fh}px`)
   }
   set()
-  if ('ResizeObserver' in window && bottom.value) { ro = new ResizeObserver(set); ro.observe(bottom.value) }
+  if ('ResizeObserver' in window && bottom.value) {
+    ro = new ResizeObserver(set)
+    bottom.value.querySelectorAll('.pk-band-bottom, .pk-footer').forEach((el) => ro!.observe(el))
+  }
   window.addEventListener('resize', set)
 })
 onBeforeUnmount(() => ro?.disconnect())
