@@ -107,10 +107,13 @@ function onLang(v: Lang) {
   <div class="pk-band pk-band-top" :class="`ui-${lang}`">
   <header class="pk-top">
     <a class="pk-brand" :href="homeLink">
-      <!-- 莲花 + 网站名合成图：四种语言 × 浅/深两种色调，共 8 张（public/brand/，管理员定稿 2026-11-19）；
-           两张都放进页面，用 CSS 按 .dark 显示其一，切换色调不闪烁 -->
-      <img class="pk-brand-art is-light" :src="withBase(`/brand/brand-${lang}-light.webp`)" :alt="t('siteName')" />
-      <img class="pk-brand-art is-dark" :src="withBase(`/brand/brand-${lang}-dark.webp`)" alt="" aria-hidden="true" />
+      <!-- 左：莲花（public/brand/lotus.webp，各语言同一朵）；右：网站名，放在莲花与“主页”按钮之间的正中。
+           网站名四种语言 × 浅/深两种色调，共 8 张（public/brand/title-*.webp），按 .dark 显示其一，切换不闪烁 -->
+      <img class="pk-brand-lotus" :src="withBase('/brand/lotus.webp')" alt="" aria-hidden="true" />
+      <span class="pk-brand-title">
+        <img class="pk-brand-art is-light" :src="withBase(`/brand/title-${lang}-light.webp`)" :alt="t('siteName')" />
+        <img class="pk-brand-art is-dark" :src="withBase(`/brand/title-${lang}-dark.webp`)" alt="" aria-hidden="true" />
+      </span>
     </a>
     <TopNav @lang="onLang" />
   </header>

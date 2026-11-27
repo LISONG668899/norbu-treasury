@@ -204,14 +204,18 @@ html { background-color: var(--pk-bg); }
 .pk-brand {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 0;
+  flex: 1 1 auto;                   /* 占满莲花到右侧按钮之间的全部空间 */
   min-width: 0;
   color: var(--pk-ink) !important;
   text-decoration: none !important;
 }
 .pk-brand img { display: block; height: var(--brand-h); width: auto; flex: none; }
 /* 莲花 + 网站名合成图：浅色显示 is-light，深色显示 is-dark */
-.pk-brand img.pk-brand-art { height: var(--brand-art-h); max-width: 100%; object-fit: contain; object-position: left center; }
+.pk-brand img.pk-brand-lotus { height: var(--brand-art-h); width: auto; flex: none; }
+/* 网站名：在“莲花右缘 → 主页按钮左缘”这段空间里水平居中（左右各留与按钮间距相同的空隙） */
+.pk-brand-title { flex: 1 1 auto; min-width: 0; display: flex; justify-content: center; margin-left: var(--s3); }
+.pk-brand img.pk-brand-art { height: var(--brand-art-h); max-width: 100%; object-fit: contain; object-position: center; }
 .pk-brand img.pk-brand-art.is-dark { display: none; }
 .dark .pk-brand img.pk-brand-art.is-light { display: none; }
 .dark .pk-brand img.pk-brand-art.is-dark { display: block; }
@@ -870,7 +874,8 @@ html[lang="en"] .pk-item-name { letter-spacing: .01em; }
   /* 搜索框和黄条一起固定（.pk-sticky），不随内容滑动；固定区不宜太高，首页目录另外下移拉开距离 */
   .pk-catalog.is-home { margin-top: var(--s3); }
   .pk-top { padding: 8px 12px 8px var(--s2); gap: var(--s1); }
-  .pk-brand { gap: 8px; }
+  .pk-brand { gap: 0; }
+  .pk-brand-title { margin-left: var(--s1); }   /* 与手机上按钮区的间距（8px）一致，网站名仍在正中 */
   .pk-nav-btn { min-width: 48px; height: 52px; padding: 4px 2px 2px; }
   .pk-nav-btn svg { width: 22px; height: 22px; }
   .pk-searchrow { padding: var(--s3) var(--s2); }
